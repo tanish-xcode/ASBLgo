@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>GET OUT — ASBL</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=New+Amsterdam&family=Pinyon+Script&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <div class="phone">
+    <!-- ===== Header ===== -->
+    <header class="topbar">
+      <img class="logo" src="/assets/logo.png" alt="GET OUT" />
+      <button class="avatar-btn" id="avatarBtn" aria-label="Profile">
+        <img src="/assets/user.png" alt="" />
+      </button>
+    </header>
+
+    <!-- ===== Location + Search ===== -->
+    <section class="locate reveal">
+      <button class="location" id="locationBtn">
+        <span class="loc-icon"><img src="/assets/briefcase.png" alt="" /></span>
+        <span class="loc-text">
+          <span class="loc-org" id="locOrg">ASBL</span>
+          <span class="loc-addr" id="locAddr">Loading…</span>
+        </span>
+        <span class="loc-caret"><img src="/assets/down-arrow.png" alt="" /></span>
+      </button>
+
+      <form class="searchbar" id="searchForm" autocomplete="off">
+        <img class="search-icon" src="/assets/search.png" alt="" />
+        <input id="searchInput" type="search" placeholder="Search" aria-label="Search events" />
+      </form>
+      <ul class="search-results" id="searchResults" hidden></ul>
+    </section>
+
+    <!-- ===== Hero carousel ===== -->
+    <section class="hero-wrap reveal">
+      <div class="hero-track" id="heroTrack"><!-- slides injected --></div>
+      <div class="dots" id="heroDots"></div>
+    </section>
+
+    <!-- ===== Categories ===== -->
+    <section class="categories reveal">
+      <div class="cat-grid" id="catGrid"><!-- tiles injected --></div>
+    </section>
+
+    <!-- ===== Scenes worthy + featured events carousel ===== -->
+    <section class="scenes reveal">
+      <div class="offer" id="offerSection">
+        <div class="offer-copy">
+          <h2 class="offer-title" id="offerTitle">Scenes<br />worthy</h2>
+        </div>
+        <div class="offer-art">
+          <img id="offerImg" src="/assets/offer.png" alt="" />
+          <button class="book-now" id="bookNow">BOOK NOW</button>
+        </div>
+      </div>
+
+      <div class="feature">
+        <div class="feature-track" id="featureTrack">
+          <div class="feature-rail" id="featureRail"><!-- cards injected --></div>
+        </div>
+        <div class="feature-foot">
+          <span class="foot-line"></span>
+          <button class="view-all" id="viewAll">View all</button>
+          <span class="foot-line"></span>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer-space"></div>
+  </div>
+
+  <!-- category page (routed: #/category/:id) -->
+  <div class="detail" id="categoryView" hidden aria-hidden="true"></div>
+
+  <!-- event detail view (routed: #/event/:id) -->
+  <div class="detail" id="detailView" hidden aria-hidden="true"></div>
+
+  <!-- profile sheet (bookings + favorites) -->
+  <div class="sheet" id="profileView" hidden aria-hidden="true"></div>
+
+  <!-- toast -->
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="/app.js"></script>
+</body>
+</html>

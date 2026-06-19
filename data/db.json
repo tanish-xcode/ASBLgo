@@ -1,0 +1,261 @@
+{
+  "location": {
+    "org": "ASBL",
+    "address": "7th Floor, ASBL Hyderabad, Tower 2, PSR Prime Tower, Professor CR Rao Road, Gachibowli, Hyderabad",
+    "short": "Gachibowli, Hyderabad"
+  },
+  "featured": [
+    {
+      "id": "f1",
+      "title": "Mythical Classica",
+      "artist": "By Kavyalakshmi Reddy",
+      "time": "6:30 PM ONW",
+      "tag": "studio waves",
+      "date": "10 Jun",
+      "subtitle": "Studio Waves",
+      "image": "/assets/hero1.png",
+      "category": "stage",
+      "venue": "ASBL Studio, PSR Prime Tower, Gachibowli",
+      "description": "A Carnatic-classical reimagining staged inside ASBL's acoustically-tuned studio. Kavyalakshmi Reddy weaves myth and melody across a 90-minute set, backed by a live three-piece ensemble.",
+      "priceFrom": 500,
+      "favorite": false
+    },
+    {
+      "id": "f2",
+      "title": "Veena Echoes",
+      "artist": "By Anjali Sharma",
+      "time": "7:00 PM ONW",
+      "tag": "live acoustic",
+      "date": "11 Jun",
+      "subtitle": "Live Acoustic",
+      "image": "/assets/hero2.png",
+      "category": "jamming",
+      "venue": "Open-Air Amphitheatre, Hitech City",
+      "description": "An intimate acoustic evening built around the veena. Anjali Sharma trades phrases with guitar and tabla under the open sky — part concert, part jam, entirely unplugged.",
+      "priceFrom": 750,
+      "favorite": false
+    },
+    {
+      "id": "f3",
+      "title": "Folk & Form",
+      "artist": "By Ravi Teja",
+      "time": "8:00 PM ONW",
+      "tag": "open canvas",
+      "date": "14 Jun",
+      "subtitle": "Open Canvas",
+      "image": "/assets/hero3.png",
+      "category": "crafts",
+      "venue": "The Canvas Hall, Jubilee Hills",
+      "description": "Folk forms meet live craft. Ravi Teja leads a hands-on session where the audience paints alongside the performance — bring nothing, leave with your own canvas.",
+      "priceFrom": 350,
+      "favorite": false
+    }
+  ],
+  "categories": [
+    {
+      "id": "fine-dining",
+      "name": "Fine Dining",
+      "image": "/assets/cat-fine-dining.png"
+    },
+    {
+      "id": "stage",
+      "name": "The stage",
+      "image": "/assets/cat-the-stage.png"
+    },
+    {
+      "id": "crafts",
+      "name": "Crafts",
+      "image": "/assets/cat-crafts.png"
+    },
+    {
+      "id": "spaces",
+      "name": "Spaces",
+      "image": "/assets/cat-spaces.png"
+    },
+    {
+      "id": "stories",
+      "name": "Stories",
+      "image": "/assets/cat-stories.png"
+    },
+    {
+      "id": "jamming",
+      "name": "Jamming",
+      "image": "/assets/hero1.png"
+    }
+  ],
+  "offer": {
+    "id": "o1",
+    "title": "Scenes worthy",
+    "headline": "Flat 1,500 off",
+    "sub": "on all events",
+    "cta": "BOOK NOW",
+    "image": "/assets/offer.png"
+  },
+  "events": [
+    {
+      "id": "e1",
+      "title": "MOZHI",
+      "subtitle": "Araku Cafe",
+      "date": "12 Jun",
+      "time": "7:30 PM ONW",
+      "artist": "Curated by Araku Cafe",
+      "image": "/assets/event1.png",
+      "category": "fine-dining",
+      "venue": "Araku Cafe, Banjara Hills",
+      "description": "A silk-threaded tasting menu set to live music. MOZHI pairs slow-craft South Indian plates with a curated soundscape for a long, unhurried evening.",
+      "priceFrom": 600,
+      "favorite": false
+    },
+    {
+      "id": "e2",
+      "title": "MOZHI",
+      "subtitle": "Araku Cafe",
+      "date": "13 Jun",
+      "time": "6:00 PM ONW",
+      "artist": "Curated by Araku Cafe",
+      "image": "/assets/event2.png",
+      "category": "stories",
+      "venue": "Araku Cafe, Madhapur",
+      "description": "An evening of spoken-word and supper. Storytellers take the floor between courses, turning a quiet cafe into a stage for the city's voices.",
+      "priceFrom": 450,
+      "favorite": false
+    },
+    {
+      "id": "e3",
+      "title": "MOZHI",
+      "subtitle": "Araku Cafe",
+      "date": "13 Jun",
+      "time": "8:30 PM ONW",
+      "artist": "Curated by Araku Cafe",
+      "image": "/assets/event3.png",
+      "category": "stage",
+      "venue": "Araku Cafe, Kondapur",
+      "description": "The stage edition — a late-evening showcase of dance and movement, plated alongside a chef's tasting flight. One ticket, two art forms.",
+      "priceFrom": 500,
+      "favorite": false
+    }
+  ],
+  "bookings": [
+    {
+      "id": "bk_mqf45zn2",
+      "eventId": "e1",
+      "offerId": null,
+      "title": "MOZHI · Araku Cafe",
+      "seats": 1,
+      "createdAt": "2026-06-15T11:12:21.422Z"
+    },
+    {
+      "id": "bk_mqg9hs3l",
+      "eventId": null,
+      "offerId": "o1",
+      "title": "Scenes worthy offer",
+      "seats": 1,
+      "createdAt": "2026-06-16T06:29:15.777Z"
+    },
+    {
+      "id": "bk_mqg9ht6z",
+      "eventId": null,
+      "offerId": "o1",
+      "title": "Scenes worthy offer",
+      "seats": 1,
+      "createdAt": "2026-06-16T06:29:17.195Z"
+    },
+    {
+      "id": "bk_mqga1yj0",
+      "eventId": "e3",
+      "offerId": null,
+      "title": "MOZHI · Araku Cafe",
+      "seats": 1,
+      "createdAt": "2026-06-16T06:44:57.228Z"
+    },
+    {
+      "id": "bk_mqga1z22",
+      "eventId": "e3",
+      "offerId": null,
+      "title": "MOZHI · Araku Cafe",
+      "seats": 1,
+      "createdAt": "2026-06-16T06:44:57.914Z"
+    },
+    {
+      "id": "bk_mqga20qr",
+      "eventId": "e1",
+      "offerId": null,
+      "title": "MOZHI · Araku Cafe",
+      "seats": 1,
+      "createdAt": "2026-06-16T06:45:00.099Z"
+    },
+    {
+      "id": "bk_mqgbngcn",
+      "eventId": "e2",
+      "offerId": null,
+      "title": "MOZHI · Araku Cafe",
+      "seats": 1,
+      "createdAt": "2026-06-16T07:29:39.719Z"
+    },
+    {
+      "id": "bk_mqhyt79f",
+      "eventId": "e1",
+      "offerId": null,
+      "title": "MOZHI · Araku Cafe",
+      "seats": 1,
+      "createdAt": "2026-06-17T11:05:45.219Z"
+    },
+    {
+      "id": "bk_mqhyt7nu",
+      "eventId": "e2",
+      "offerId": null,
+      "title": "MOZHI · Araku Cafe",
+      "seats": 1,
+      "createdAt": "2026-06-17T11:05:45.738Z"
+    },
+    {
+      "id": "bk_mqhyt8xl",
+      "eventId": "e2",
+      "offerId": null,
+      "title": "MOZHI · Araku Cafe",
+      "seats": 1,
+      "createdAt": "2026-06-17T11:05:47.385Z"
+    },
+    {
+      "id": "bk_mqj3tw3c",
+      "eventId": "f2",
+      "offerId": null,
+      "title": "Veena Echoes · Live Acoustic",
+      "seats": 1,
+      "createdAt": "2026-06-18T06:14:01.656Z"
+    },
+    {
+      "id": "bk_mqkokyre",
+      "eventId": "f3",
+      "offerId": null,
+      "title": "Folk & Form · Open Canvas",
+      "seats": 1,
+      "createdAt": "2026-06-19T08:42:43.322Z"
+    },
+    {
+      "id": "bk_mqkpisuz",
+      "eventId": "f3",
+      "offerId": null,
+      "title": "Folk & Form · Open Canvas",
+      "seats": 1,
+      "createdAt": "2026-06-19T09:09:01.979Z"
+    },
+    {
+      "id": "bk_mqks9s85",
+      "eventId": null,
+      "offerId": "o1",
+      "title": "Scenes worthy offer",
+      "seats": 1,
+      "createdAt": "2026-06-19T10:26:00.101Z"
+    },
+    {
+      "id": "bk_mqks9tgp",
+      "eventId": null,
+      "offerId": "o1",
+      "title": "Scenes worthy offer",
+      "seats": 1,
+      "createdAt": "2026-06-19T10:26:01.705Z"
+    }
+  ],
+  "favorites": []
+}

@@ -401,7 +401,8 @@ body {
 
 /* ===== Category page ===== */
 .catpage-sheet {
-  width: 100%; max-width: 440px; min-height: 100%;
+  width: 100%; max-width: 440px;
+  min-height: 100vh; min-height: 100dvh;   /* always cover the screen so home doesn't bleed through */
   background: #e7e1d4; color: #2a2620;   /* muted, clean canvas */
   display: flex; flex-direction: column;
   overflow-x: clip;                  /* clip the cover while it slides in/out */
@@ -458,17 +459,17 @@ body {
 .cover-head h2 { font-size: 21px; font-weight: 800; letter-spacing: -.3px; line-height: 1.1; }
 .cover-head span { font-size: 12px; opacity: .5; }
 
-.cover-stack { position: relative; margin: 16px 18px 0; padding-top: 32px; }
+.cover-stack { position: relative; margin: 14px 18px 0; padding-top: 22px; }
 .stack-card {
   position: absolute; left: 50%; transform: translateX(-50%); cursor: pointer; overflow: hidden;
-  height: 54px; border-radius: 28px 28px 0 0; background-size: cover; background-position: center 35%;
-  box-shadow: 0 -6px 14px rgba(55,48,35,.10);
+  height: 40px; border-radius: 24px 24px 0 0; background-size: cover; background-position: center 35%;
+  box-shadow: 0 -5px 12px rgba(55,48,35,.08);
 }
 .stack-card::after {                 /* mute the peeking photos toward the canvas tone */
-  content: ''; position: absolute; inset: 0; background: rgba(231,225,212,.42);
+  content: ''; position: absolute; inset: 0; background: rgba(231,225,212,.6);
 }
-.stack-card.s2 { top: 16px; width: 84%; }
-.stack-card.s3 { top: 0;    width: 70%; filter: brightness(.97); }
+.stack-card.s2 { top: 11px; width: 86%; }
+.stack-card.s3 { top: 0;    width: 74%; filter: brightness(.97); }
 
 .cover-main {                        /* no boxy card — blends into the canvas, image is the hero */
   position: relative; z-index: 2;
@@ -515,7 +516,8 @@ body {
 }
 
 .detail-sheet {
-  width: 100%; max-width: 440px; min-height: 100%;
+  width: 100%; max-width: 440px;
+  min-height: 100vh; min-height: 100dvh;   /* cover the screen so nothing shows behind */
   background: var(--cream); color: var(--ink);
   display: flex; flex-direction: column;
   animation: detail-in .32s cubic-bezier(.2,.8,.2,1);

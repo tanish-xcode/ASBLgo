@@ -154,13 +154,14 @@ function updateFeature() {
     el.style.transform = `translateX(${x}px) scale(${s})`;
     el.style.zIndex = p > 0.5 ? 6 : 1;       // featured rides above the cream offer card (z5)
 
-    // fade the label/divider of any card that has scrolled left past the anchor,
-    // so no clipped text tail peeks at the left edge
+    // Only the focused (big) card wears its label — side cards stay clean so the
+    // "MOZHI / Araku Cafe / date" of neighbours don't pile up and overlap on narrow screens.
     const passed = i >= f ? 1 : Math.max(0, 1 - (f - i));
+    const vis = passed * Math.max(0, (p - 0.35) / 0.65);   // 1 at centre, fades to 0 toward the sides
     const meta = el.querySelector('.fc-meta');
-    if (meta) meta.style.opacity = passed;
+    if (meta) meta.style.opacity = vis;
     const sep = el.querySelector('.fc-sep');
-    if (sep) sep.style.opacity = (i === 0 ? 0 : (1 - p) * passed);
+    if (sep) sep.style.opacity = (i === 0 ? 0 : (1 - p) * passed * 0.4);
   });
 
   // Stable rail width: must allow scrolling far enough to bring the LAST card to the

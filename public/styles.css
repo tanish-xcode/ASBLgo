@@ -185,16 +185,17 @@ body {
   content: ''; position: absolute; inset: 0;
   background:
     linear-gradient(to top,
-      rgba(15,5,0,.66) 0%,
-      rgba(20,7,0,.30) 26%,
-      rgba(255,84,0,.16) 52%,
-      rgba(255,84,0,0) 78%);
+      rgba(10,4,0,.82) 0%,
+      rgba(12,5,0,.58) 24%,
+      rgba(20,7,0,.24) 44%,
+      rgba(255,84,0,.06) 62%,
+      rgba(255,84,0,0) 82%);
 }
 .hero-meta { position: absolute; left: 22px; right: 22px; bottom: 26px; z-index: 2; }
 .hero-title {
   font-family: 'Pinyon Script', cursive;
   font-size: 46px; line-height: .9; color: #fff;
-  text-shadow: 0 2px 14px rgba(0,0,0,.45);
+  text-shadow: 0 2px 18px rgba(0,0,0,.7), 0 1px 3px rgba(0,0,0,.55);
 }
 .hero-sub { font-size: 14px; margin-top: 6px; opacity: .95; }
 .hero-tag {

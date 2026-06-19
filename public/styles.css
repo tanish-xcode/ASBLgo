@@ -306,6 +306,7 @@ body {
 /* ===== Featured events carousel ===== */
 .feature {
   position: relative;
+  z-index: 7;                        /* lift the whole section (and its up-bleeding cards) above the offer card */
   display: flow-root;                /* contain the track's negative margin (no collapse onto the offer) */
   background: linear-gradient(to bottom, #ff6a1f 0%, var(--orange) 42%, #b8490a 82%, var(--orange-deep) 100%);
   border-radius: 44px 44px 0 0;

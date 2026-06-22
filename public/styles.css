@@ -19,7 +19,7 @@
 
 html { scroll-behavior: smooth; }
 
-html, body { background: #0d0d0d; }
+html, body { background: #0d0d0d; overscroll-behavior: none; }
 
 body {
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
@@ -395,7 +395,7 @@ body {
   position: fixed; inset: 0; z-index: 90;
   display: flex; justify-content: center;
   overflow-y: auto; -webkit-overflow-scrolling: touch;
-  overscroll-behavior: contain;      /* don't bounce/chain into the page behind */
+  overscroll-behavior: none;         /* no rubber-band reveal of the page behind, top or bottom */
 }
 /* opaque overlay backgrounds so the home page never shows through on overscroll */
 #detailView { background: var(--cream); }
@@ -669,6 +669,49 @@ body {
 .detail-book:active { transform: scale(.97); }
 .detail-book.booked {
   background: #1e9e54; box-shadow: 0 10px 24px rgba(30,158,84,.34);
+}
+
+/* ===== Detail — desktop layout: two-column magazine card ===== */
+@media (min-width: 760px) {
+  #detailView { background: radial-gradient(120% 100% at 50% 0%, #efe7d9, #e3dac9); align-items: center; padding: 40px 32px; }
+
+  .detail-sheet {
+    align-self: center;
+    width: 100%; max-width: 940px; height: min(620px, 86vh);
+    display: grid;
+    grid-template-columns: 1.08fr 1fr;
+    grid-template-rows: 1fr auto;
+    border-radius: 30px; overflow: hidden;
+    box-shadow: 0 40px 100px rgba(50,36,18,.32);
+  }
+
+  .detail-minibar { display: none; }
+
+  .detail-hero {
+    grid-column: 1; grid-row: 1 / span 2;
+    height: 100%; min-height: 0;
+  }
+  .detail-hero::after {
+    background: linear-gradient(to top, rgba(20,12,4,.7) 0%, rgba(20,12,4,0) 38%, rgba(20,12,4,0) 60%, rgba(20,12,4,.35) 100%);
+  }
+  .detail-title { font-size: 62px; }
+
+  .detail-body {
+    grid-column: 2; grid-row: 1;
+    overflow-y: auto; overscroll-behavior: contain;
+    padding: 34px 32px 24px;
+  }
+  .detail-body::-webkit-scrollbar { width: 8px; }
+  .detail-body::-webkit-scrollbar-thumb { background: rgba(120,40,0,.18); border-radius: 8px; }
+
+  .detail-foot {
+    grid-column: 2; grid-row: 2;
+    padding: 18px 28px 22px;
+    box-shadow: 0 -14px 30px rgba(120,40,0,.08);
+  }
+  .detail-book { font-size: 26px; padding: 18px; }
+
+  .detail-desc p { font-size: 16px; }
 }
 
 /* ===== Scroll reveal ===== */

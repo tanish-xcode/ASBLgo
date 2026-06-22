@@ -94,7 +94,10 @@ function renderCategories(cats) {
 
 function renderOffer(offer) {
   state.offer = offer;
-  $('#offerTitle').innerHTML = offer.title.replace(' ', '<br />');
+  $('.offer-copy').innerHTML = `
+    <h2 class="offer-title" id="offerTitle">${offer.title.replace(' ', '<br />')}</h2>
+    ${offer.headline ? `<div class="offer-headline">${offer.headline}</div>` : ''}
+    ${offer.sub ? `<div class="offer-sub">${offer.sub}</div>` : ''}`;
   $('#offerImg').src = offer.image;
   $('#bookNow').textContent = offer.cta;
 }

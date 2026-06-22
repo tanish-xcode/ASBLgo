@@ -425,15 +425,6 @@ function renderDetail(ev) {
             <p>${ev.description}</p>
           </div>` : ''}
 
-        ${ev.artist ? `
-          <div class="detail-host">
-            <span class="host-avatar">${ev.artist.replace(/^(Curated by|By)\s+/i, '').trim().charAt(0).toUpperCase()}</span>
-            <span class="host-txt">
-              <small>Hosted by</small>
-              <b>${ev.artist.replace(/^(Curated by|By)\s+/i, '').trim()}</b>
-            </span>
-          </div>` : ''}
-
         <div class="detail-seats">
           <span class="dot"></span>${seatsLeft} spots left — book soon
         </div>

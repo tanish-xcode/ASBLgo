@@ -520,8 +520,8 @@ body {
 
 .detail-sheet {
   position: relative;
+  align-self: flex-start;                  /* hug content height — no forced full-screen gap */
   width: 100%; max-width: 440px;
-  min-height: 100vh; min-height: 100dvh;   /* cover the screen so nothing shows behind */
   background: var(--cream); color: var(--ink);
   display: flex; flex-direction: column;
   animation: detail-in .32s cubic-bezier(.2,.8,.2,1);
@@ -597,7 +597,7 @@ body {
 .detail-artist { font-size: 15px; font-weight: 600; color: rgba(255,255,255,.92);
   text-shadow: 0 1px 8px rgba(0,0,0,.5); }
 
-.detail-body { flex: 1; padding: 18px 20px 140px; }   /* bottom space clears the sticky footer bar */
+.detail-body { padding: 18px 20px 22px; }
 
 .detail-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
 .chip {
@@ -639,22 +639,6 @@ body {
   letter-spacing: .08em; color: var(--orange-bright); margin-bottom: 10px; }
 .detail-desc p { font-size: 16px; line-height: 1.7; opacity: .82; }
 
-.detail-host {
-  display: flex; align-items: center; gap: 13px;
-  padding: 14px 16px; border-radius: 20px; margin-bottom: 18px;
-  background: linear-gradient(135deg, rgba(255,102,0,.10), rgba(255,102,0,.03));
-  border: 1px solid rgba(255,102,0,.14);
-}
-.host-avatar {
-  width: 46px; height: 46px; flex: none; border-radius: 50%; display: grid; place-items: center;
-  background: var(--orange-bright); color: #fff; font-weight: 800; font-size: 20px;
-  box-shadow: 0 6px 16px rgba(255,102,0,.3);
-}
-.host-txt { display: flex; flex-direction: column; gap: 2px; }
-.host-txt small { font-size: 11px; font-weight: 800; text-transform: uppercase;
-  letter-spacing: .06em; opacity: .55; }
-.host-txt b { font-size: 16px; font-weight: 700; }
-
 .detail-seats {
   display: inline-flex; align-items: center; gap: 8px;
   font-size: 13px; font-weight: 700; color: #b3431a;
@@ -664,12 +648,10 @@ body {
 @keyframes seat-pulse { to { box-shadow: 0 0 0 7px rgba(240,100,30,0); } }
 
 .detail-foot {
-  position: sticky; bottom: 0;
   display: flex; align-items: center; gap: 14px;
-  padding: 14px 18px calc(16px + env(safe-area-inset-bottom));
-  background: rgba(242,236,224,.94); backdrop-filter: blur(14px);
+  padding: 16px 18px calc(18px + env(safe-area-inset-bottom));
+  background: var(--cream);
   border-top: 1px solid rgba(120,40,0,.10);
-  box-shadow: 0 -12px 30px rgba(120,40,0,.12);
 }
 .detail-price { display: flex; flex-direction: column; line-height: 1.05; }
 .detail-price small { font-size: 11px; opacity: .5; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; }

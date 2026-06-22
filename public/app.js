@@ -356,6 +356,16 @@ function closeDetail() {
   document.body.style.overflow = '';
 }
 
+// little inline icons for the detail facts
+const DICON = {
+  calendar: '<svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 9h18M8 3v4M16 3v4"/></svg>',
+  clock: '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg>',
+  pin: '<svg viewBox="0 0 24 24"><path d="M12 21s-7-6.4-7-11a7 7 0 0 1 14 0c0 4.6-7 11-7 11z"/><circle cx="12" cy="10" r="2.4"/></svg>',
+  tag: '<svg viewBox="0 0 24 24"><path d="M3 12V4a1 1 0 0 1 1-1h8l9 9-9 9-9-9z"/><circle cx="7.5" cy="7.5" r="1.4"/></svg>',
+  share: '<svg viewBox="0 0 24 24"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>',
+  arrow: '<svg viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8"/></svg>',
+};
+
 function renderDetail(ev) {
   const view = $('#detailView');
   const catName =
@@ -364,32 +374,77 @@ function renderDetail(ev) {
     ev.category ||
     '';
   const price = ev.priceFrom ? '₹' + ev.priceFrom.toLocaleString('en-IN') : 'Free';
+  const seatsLeft = ev.seatsLeft || (8 + (ev.id ? ev.id.charCodeAt(ev.id.length - 1) % 14 : 0));
+  const venueShort = (ev.venue || '').split(',')[0] || 'TBA';
 
   view.innerHTML = `
     <div class="detail-sheet">
+      <div class="detail-minibar" id="detailMini">
+        <button class="mini-back" id="miniBack" aria-label="Back">‹</button>
+        <span class="mini-title">${ev.title}</span>
+        <button class="mini-book" id="miniBook">${price}</button>
+      </div>
+
       <div class="detail-hero">
         <img src="${ev.image}" alt="${ev.title}" />
         <div class="detail-top">
           <button class="detail-back" id="detailBack" aria-label="Back">‹</button>
-          <button class="detail-heart ${ev.favorite ? 'on' : ''}" data-id="${ev.id}" aria-label="Save">
-            ${ev.favorite ? '♥' : '♡'}
-          </button>
+          <div class="detail-top-right">
+            <button class="detail-icon" id="detailShare" aria-label="Share">${DICON.share}</button>
+            <button class="detail-heart ${ev.favorite ? 'on' : ''}" data-id="${ev.id}" aria-label="Save">
+              ${ev.favorite ? '♥' : '♡'}
+            </button>
+          </div>
         </div>
-        ${ev.tag ? `<span class="detail-tag">${ev.tag}</span>` : ''}
+        <div class="detail-hero-foot">
+          ${ev.tag ? `<span class="detail-tag">${ev.tag}</span>` : ''}
+          <h1 class="detail-title">${ev.title}</h1>
+          ${ev.artist ? `<div class="detail-artist">${ev.artist}</div>` : ''}
+        </div>
       </div>
+
       <div class="detail-body">
-        <h1 class="detail-title">${ev.title}</h1>
-        ${ev.artist ? `<div class="detail-artist">${ev.artist}</div>` : ''}
-        <div class="detail-facts">
-          <div class="fact"><span class="fact-k">Date</span><span class="fact-v">${ev.date || 'TBA'}</span></div>
-          <div class="fact"><span class="fact-k">Time</span><span class="fact-v">${ev.time || 'TBA'}</span></div>
-          <div class="fact"><span class="fact-k">Venue</span><span class="fact-v">${ev.venue || 'TBA'}</span></div>
-          <div class="fact"><span class="fact-k">Category</span><span class="fact-v">${catName}</span></div>
+        <div class="detail-chips">
+          ${ev.date ? `<span class="chip">${DICON.calendar}${ev.date}</span>` : ''}
+          ${ev.time ? `<span class="chip">${DICON.clock}${ev.time}</span>` : ''}
+          ${catName ? `<span class="chip chip-cat">${DICON.tag}${catName}</span>` : ''}
         </div>
-        ${ev.description ? `<div class="detail-desc"><h3>About</h3><p>${ev.description}</p></div>` : ''}
+
+        <button class="detail-venue" id="detailVenue">
+          <span class="venue-ico">${DICON.pin}</span>
+          <span class="venue-txt">
+            <small>Venue</small>
+            <b>${ev.venue || 'TBA'}</b>
+          </span>
+          <span class="venue-go">${DICON.arrow}</span>
+        </button>
+
+        ${ev.description ? `
+          <div class="detail-desc">
+            <h3>About this event</h3>
+            <p>${ev.description}</p>
+          </div>` : ''}
+
+        ${ev.artist ? `
+          <div class="detail-host">
+            <span class="host-avatar">${ev.artist.replace(/^(Curated by|By)\s+/i, '').trim().charAt(0).toUpperCase()}</span>
+            <span class="host-txt">
+              <small>Hosted by</small>
+              <b>${ev.artist.replace(/^(Curated by|By)\s+/i, '').trim()}</b>
+            </span>
+          </div>` : ''}
+
+        <div class="detail-seats">
+          <span class="dot"></span>${seatsLeft} spots left — book soon
+        </div>
       </div>
+
       <div class="detail-foot">
-        <div class="detail-price"><small>From</small><b>${price}</b></div>
+        <div class="detail-price">
+          <small>From</small>
+          <b>${price}</b>
+          <em>per person</em>
+        </div>
         <button class="detail-book" id="detailBook">BOOK NOW</button>
       </div>
     </div>`;
@@ -399,22 +454,44 @@ function renderDetail(ev) {
   view.scrollTop = 0;
   document.body.style.overflow = 'hidden';
 
+  // compact header reveals as the hero scrolls out of view
+  const mini = $('#detailMini');
+  const onScroll = () => mini.classList.toggle('show', view.scrollTop > 280);
+  view.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
   $('#detailBack').addEventListener('click', goBackFromDetail);
+  $('#miniBack').addEventListener('click', goBackFromDetail);
   view.querySelector('.detail-heart').addEventListener('click', (e) =>
     toggleFavorite(e.currentTarget)
   );
-  $('#detailBook').addEventListener('click', async () => {
-    const btn = $('#detailBook');
+
+  $('#detailShare').addEventListener('click', async () => {
+    const shareData = { title: ev.title, text: `${ev.title}${ev.artist ? ' — ' + ev.artist : ''}`, url: location.href };
+    if (navigator.share) { navigator.share(shareData).catch(() => {}); }
+    else { navigator.clipboard?.writeText(location.href); toast('Link copied'); }
+  });
+
+  $('#detailVenue').addEventListener('click', () => {
+    const q = encodeURIComponent(ev.venue || ev.title);
+    window.open(`https://www.google.com/maps/search/?api=1&query=${q}`, '_blank');
+  });
+
+  const book = async (btn) => {
     if (btn.classList.contains('booked')) return;
     const bk = await api.book({ eventId: ev.id, seats: 1 }).catch(() => null);
     if (bk) {
-      btn.classList.add('booked');
-      btn.textContent = 'BOOKED ✓';
+      $('#detailBook').classList.add('booked');
+      $('#detailBook').textContent = 'BOOKED ✓';
+      $('#miniBook').classList.add('booked');
+      $('#miniBook').textContent = '✓';
       toast(`Booked: ${bk.title} ✓`);
     } else {
       toast('Booking failed, try again');
     }
-  });
+  };
+  $('#detailBook').addEventListener('click', (e) => book(e.currentTarget));
+  $('#miniBook').addEventListener('click', () => book($('#detailBook')));
 }
 
 // ---------- category page (routed via #/category/:id) ----------

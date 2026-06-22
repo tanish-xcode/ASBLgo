@@ -113,6 +113,9 @@ const smoothstep = (t) => t * t * (3 - 2 * t);
 function renderEvents(events) {
   const rail = $('#featureRail');
   rail.innerHTML = '';
+  // drop duplicates (the featured + events lists can overlap by id)
+  const seen = new Set();
+  events = events.filter((ev) => (seen.has(ev.id) ? false : seen.add(ev.id)));
   FEAT.cards = events.map((ev) => {
     const [day, mon] = String(ev.date).split(' ');
     const el = document.createElement('article');

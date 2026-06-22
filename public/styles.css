@@ -716,7 +716,8 @@ body {
 
 /* ===== Home — desktop multi-column layout ===== */
 @media (min-width: 760px) {
-  body { display: block; align-items: stretch; background: var(--cream); }
+  html, body { background: var(--cream); }   /* root must be cream too — body bg won't propagate over an opaque html */
+  body { display: block; align-items: stretch; }
 
   .phone {
     width: 100%; max-width: none; height: auto; min-height: 100vh;

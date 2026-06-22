@@ -714,6 +714,88 @@ body {
   .detail-desc p { font-size: 16px; }
 }
 
+/* ===== Home — desktop multi-column layout ===== */
+@media (min-width: 760px) {
+  body { display: block; align-items: stretch; background: var(--cream); }
+
+  .phone {
+    width: 100%; max-width: none; height: auto; min-height: 100vh;
+    border-radius: 0; box-shadow: none; overflow: visible;
+    background: var(--cream); color: var(--ink);
+  }
+
+  /* shared centered content frame */
+  .locate, .hero-wrap, .categories, .scenes {
+    max-width: 1180px; margin-inline: auto; width: 100%;
+    padding-inline: 40px;
+  }
+
+  /* full-width orange header, content capped to the frame */
+  .topbar {
+    border-radius: 0; padding: 14px 0;
+    padding-inline: max(40px, calc((100% - 1180px) / 2));
+    box-shadow: 0 6px 22px rgba(255,84,0,.18);
+  }
+  .logo { height: 44px; }
+
+  /* location + search row */
+  .locate {
+    background: none; margin: 0; padding-top: 26px; padding-bottom: 8px;
+    display: flex; align-items: center; gap: 24px;
+  }
+  .location { width: auto; flex: none; }
+  .searchbar { flex: 1; max-width: 520px; margin-left: auto; }
+
+  /* hero becomes a flat multi-card banner (coverflow JS still drives it) */
+  .hero-wrap { background: none; padding-top: 16px; padding-bottom: 8px; }
+  .hero-track { padding-inline: 0; gap: 24px; }
+  .hero-card { flex: 0 0 31%; aspect-ratio: 16 / 10; }
+  .hero-title { font-size: 40px; }
+  .dots { margin-top: 16px; }
+
+  /* categories: flat light section, wide grid */
+  .categories {
+    background: none; margin-top: 0; border-radius: 0; box-shadow: none;
+    padding-top: 40px; padding-bottom: 20px;
+  }
+  .cat-grid { grid-template-columns: repeat(6, 1fr); gap: 18px; }
+
+  /* scenes wrapper: drop the overlapping orange bands */
+  .scenes { background: none; padding-top: 8px; padding-bottom: 60px; }
+
+  .offer {
+    margin: 0 0 12px; border-radius: 24px; min-height: 0; padding: 26px 30px;
+    box-shadow: 0 16px 40px rgba(120,40,0,.14);
+  }
+  .offer-title { font-size: 40px; }
+
+  /* featured events: real card grid instead of the JS coverflow rail */
+  .feature { background: none; border-radius: 0; padding: 0; }
+  .feature-track { margin-top: 8px; height: auto; overflow: visible; }
+  .feature-rail {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 26px;
+    width: auto; height: auto;
+  }
+  .feature-card {
+    position: static; width: auto; height: auto;
+    transform: none; transition: transform .2s ease;
+  }
+  .feature-card:hover { transform: translateY(-6px); }
+  .fc-image { position: relative; inset: auto; aspect-ratio: 3 / 4; }
+  .fc-sep { display: none; }
+  .fc-meta {
+    position: relative; left: auto; top: auto; opacity: 1;
+    margin-top: 14px; gap: 12px;
+  }
+  .fc-date { width: 50px; height: 50px; }
+  .fc-text b { color: var(--ink); font-size: 18px; }
+  .fc-text span { color: var(--ink); opacity: .6; font-size: 14px; }
+
+  .feature-foot { max-width: 1180px; margin-inline: auto; padding: 24px 40px 0; }
+  .foot-line { background: rgba(120,40,0,.18); }
+  .view-all { color: var(--orange-deep); }
+}
+
 /* ===== Scroll reveal ===== */
 .reveal { opacity: 0; transform: translateY(28px); transition: opacity .7s ease, transform .7s ease; }
 .reveal.in { opacity: 1; transform: none; }

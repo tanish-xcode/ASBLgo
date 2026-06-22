@@ -135,10 +135,26 @@ function renderEvents(events) {
 // a fixed (big) layout box and are driven purely with GPU transforms — no per-frame
 // width/height/left writes — so the grow/shrink hand-off stays buttery smooth.
 const SMALL_SCALE = FEAT.small.w / FEAT.big.w;   // shrink ratio for non-featured cards
+const mqDesktop = window.matchMedia('(min-width: 760px)');
 function updateFeature() {
   const track = $('#featureTrack');
   const rail = $('#featureRail');
   if (!FEAT.cards.length) return;
+
+  // Desktop lays the featured cards out as a CSS grid — clear any inline
+  // transforms/widths the mobile coverflow left behind and let CSS take over.
+  if (mqDesktop.matches) {
+    FEAT.cards.forEach((el) => {
+      el.style.transform = '';
+      el.style.zIndex = '';
+      const m = el.querySelector('.fc-meta');
+      if (m) m.style.opacity = '';
+      const s = el.querySelector('.fc-sep');
+      if (s) s.style.opacity = '';
+    });
+    rail.style.width = '';
+    return;
+  }
 
   const step = FEAT.small.w + FEAT.gap;
   const f = track.scrollLeft / step;        // fractional index sitting at the left anchor

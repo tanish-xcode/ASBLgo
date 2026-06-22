@@ -394,9 +394,12 @@ body {
 .detail {
   position: fixed; inset: 0; z-index: 90;
   display: flex; justify-content: center;
-  background: rgba(8, 4, 2, 0.55);
   overflow-y: auto; -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;      /* don't bounce/chain into the page behind */
 }
+/* opaque overlay backgrounds so the home page never shows through on overscroll */
+#detailView { background: var(--cream); }
+#categoryView { background: #e7e1d4; }
 .detail[hidden] { display: none; }
 
 /* ===== Category page ===== */

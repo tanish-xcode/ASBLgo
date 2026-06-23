@@ -730,24 +730,85 @@ const LOCATIONS = [
 function toggleLocationMenu() {
   const existing = document.getElementById('locMenu');
   if (existing) { existing.remove(); return; }
-  const menu = document.createElement('ul');
+  const menu = document.createElement('div');
   menu.id = 'locMenu';
   menu.className = 'loc-menu';
-  menu.innerHTML = LOCATIONS.map((l, i) => `
-    <li data-i="${i}" class="${state.location && state.location.org === l.org ? 'current' : ''}">
-      <span class="lm-org">${l.org}</span>
-      <span class="lm-addr">${l.address}</span>
-    </li>`).join('');
-  $('.locate').appendChild(menu);
-  menu.querySelectorAll('li').forEach((li) =>
-    li.addEventListener('click', () => {
-      const l = LOCATIONS[+li.dataset.i];
-      state.location = l;
-      renderLocation(l);
-      menu.remove();
-      toast(`Location set to ${l.org}`);
-    })
+  renderLocMenu(menu);
+  ($('.loc-anchor') || $('.locate')).appendChild(menu);
+}
+
+function pickLocation(l, menu) {
+  state.location = l;
+  renderLocation(l);
+  menu.remove();
+  toast(`Location set to ${l.org}`);
+}
+
+function renderLocMenu(menu) {
+  menu.innerHTML = `
+    <div class="lm-search">
+      <img class="lm-search-icon" src="/assets/search.png" alt="" />
+      <input id="locSearch" type="search" placeholder="Search a place in Hyderabad…" aria-label="Search location" autocomplete="off" />
+    </div>
+    <ul class="lm-list">
+      ${LOCATIONS.map((l, i) => `
+        <li data-i="${i}" class="${state.location && state.location.org === l.org ? 'current' : ''}">
+          <span class="lm-org">${l.org}</span>
+          <span class="lm-addr">${l.address}</span>
+        </li>`).join('')}
+    </ul>`;
+
+  menu.querySelectorAll('.lm-list li').forEach((li) =>
+    li.addEventListener('click', () => pickLocation(LOCATIONS[+li.dataset.i], menu))
   );
+
+  const input = menu.querySelector('#locSearch');
+  const list = menu.querySelector('.lm-list');
+  input.focus();
+  let timer;
+  input.addEventListener('input', () => {
+    clearTimeout(timer);
+    const q = input.value.trim();
+    if (q.length < 3) { renderLocMenu(menu); return; }
+    list.innerHTML = `<li class="lm-status">Searching Hyderabad…</li>`;
+    timer = setTimeout(() => searchPlaces(q, menu, list), 350);
+  });
+}
+
+// Geocode a place within Hyderabad. Uses OpenStreetMap (keyless); swap for the
+// Google Places API here if a key is available.
+async function searchPlaces(q, menu, list) {
+  // viewbox roughly bounds Greater Hyderabad to keep results local
+  const url = 'https://nominatim.openstreetmap.org/search?format=json&addressdetails=1'
+    + '&limit=6&countrycodes=in&viewbox=78.20,17.60,78.70,17.20&bounded=1'
+    + '&q=' + encodeURIComponent(q + ', Hyderabad');
+  let results = [];
+  try {
+    results = await fetch(url, { headers: { 'Accept-Language': 'en' } }).then((r) => r.json());
+  } catch { results = []; }
+
+  if (!results.length) {
+    list.innerHTML = `<li class="lm-status">No places found in Hyderabad</li>`;
+    return;
+  }
+
+  list.innerHTML = results.map((r, i) => {
+    const name = (r.display_name || '').split(',')[0];
+    return `<li class="lm-result" data-i="${i}">
+      <span class="lm-org">${name}</span>
+      <span class="lm-addr">${r.display_name}</span>
+    </li>`;
+  }).join('');
+
+  list.querySelectorAll('.lm-result').forEach((li) => {
+    li.addEventListener('click', () => {
+      const r = results[+li.dataset.i];
+      const org = (r.display_name || '').split(',')[0];
+      const loc = { org, address: r.display_name, lat: r.lat, lon: r.lon };
+      LOCATIONS.unshift(loc);
+      pickLocation(loc, menu);
+    });
+  });
 }
 
 // ---------- profile sheet (bookings + saved) ----------

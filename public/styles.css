@@ -61,17 +61,29 @@ body {
 .topbar {
   background: var(--orange);
   border-radius: 0 0 26px 26px;
-  padding: 8px 22px 12px;
+  padding: 8px 22px 14px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  flex-wrap: wrap;
+  row-gap: 12px;
+  column-gap: 12px;
   position: sticky;
   top: 0;
   z-index: 40;
   box-shadow: 0 10px 26px rgba(255, 84, 0, 0.28);
 }
-.logo { height: 40px; width: auto; object-fit: contain; }
+.logo { height: 40px; width: auto; object-fit: contain; order: 1; }
+/* location card now lives in the orange bar; on mobile it wraps to its own row */
+.loc-anchor { order: 3; flex: 0 0 100%; position: relative; }
+.location {
+  display: flex; align-items: center; gap: 12px;
+  width: 100%; text-align: left; cursor: pointer; color: var(--ink);
+  background: #fff; border: 1px solid rgba(20,10,0,.04);
+  border-radius: 14px; padding: 8px 14px;
+  box-shadow: 0 8px 20px rgba(120,40,0,.18);
+}
 .avatar-btn {
+  order: 2; margin-left: auto;
   width: 44px; height: 44px; border-radius: 50%;
   border: none; padding: 0; cursor: pointer;
   overflow: hidden; background: rgba(255,255,255,0.2);
@@ -80,17 +92,12 @@ body {
 .avatar-btn:active { transform: scale(0.92); }
 .avatar-btn img { width: 100%; height: 100%; object-fit: cover; }
 
-/* ===== Location + search ===== */
+/* ===== Search ===== */
 .locate {
   background: linear-gradient(to bottom, #fffaf6 0%, #fffaf6 72%, #fff5ec 86%, #ffeede 100%);
   margin: -16px 0 0;
-  padding: 28px 22px 0;
+  padding: 24px 22px 0;
   color: var(--ink);
-}
-.location {
-  display: flex; align-items: center; gap: 12px;
-  background: none; border: none; cursor: pointer;
-  width: 100%; text-align: left; color: var(--ink);
 }
 .loc-icon {
   width: 42px; height: 42px; display: grid; place-items: center;
@@ -765,28 +772,36 @@ body {
       linear-gradient(180deg, #ff6e22 0%, var(--orange) 58%, #ef4d00 100%);
     box-shadow: 0 10px 28px rgba(255,84,0,.22), inset 0 -1px 0 rgba(0,0,0,.08);
   }
-  .logo { height: 46px; }
+  /* single-row header: logo left, location card after it, avatar right */
+  .topbar { flex-wrap: nowrap; }
+  .logo { height: 46px; order: 1; }
+  .loc-anchor {
+    order: 2; flex: 0 1 440px; max-width: 440px; margin-left: 24px;
+  }
+  .location {
+    width: 100%; flex: none; max-width: none;
+    background: #fff; border: 1px solid rgba(20,10,0,.06);
+    border-radius: 14px; padding: 8px 14px;
+    box-shadow: 0 6px 16px rgba(120,40,0,.22);
+    transition: box-shadow .2s ease, transform .15s ease;
+  }
+  .location:hover { box-shadow: 0 10px 22px rgba(120,40,0,.3); transform: translateY(-1px); }
+  .loc-addr { font-size: 12.5px; }
   .avatar-btn {
+    order: 3; margin-left: auto;
     width: 46px; height: 46px;
     background: rgba(255,255,255,.18);
     box-shadow: 0 0 0 2px rgba(255,255,255,.55), 0 6px 14px rgba(120,40,0,.28);
   }
 
-  /* location + search row: a clean toolbar instead of floating controls */
+  /* search bar centered on its own row below the header */
   .locate {
-    background: none; margin: 0; padding-top: 24px; padding-bottom: 8px;
-    display: flex; align-items: center; gap: 20px;
+    background: none; margin: 0; padding-top: 22px; padding-bottom: 8px;
   }
-  .location {
-    width: auto; flex: none; max-width: 440px;
-    background: #fff; border: 1px solid rgba(20,10,0,.06);
-    border-radius: 14px; padding: 8px 14px;
-    box-shadow: 0 6px 16px rgba(150,55,10,.08);
-    transition: box-shadow .2s ease, transform .15s ease;
-  }
-  .location:hover { box-shadow: 0 10px 22px rgba(150,55,10,.14); transform: translateY(-1px); }
-  .loc-addr { font-size: 12.5px; }
-  .searchbar { flex: 1; max-width: 560px; margin-left: auto; margin-top: 0; }
+  .searchbar { width: 100%; max-width: 620px; margin: 0 auto; }
+  .search-results { max-width: 620px; margin-inline: auto; }
+  /* dropdown hangs under the location card */
+  .loc-menu { left: 0; right: auto; width: 440px; max-width: 100%; }
 
   /* hero becomes a flat multi-card banner (coverflow JS still drives it) */
   .hero-wrap { background: none; padding-top: 22px; padding-bottom: 8px; }
@@ -876,22 +891,40 @@ body {
 
 /* ===== Location dropdown ===== */
 .locate { position: relative; }
+.loc-anchor { position: relative; }
 .loc-menu {
-  list-style: none; position: absolute; left: 16px; right: 16px; top: 74px;
+  list-style: none; position: absolute; left: 0; right: 0; top: calc(100% + 8px);
   z-index: 60; background: #fff; color: var(--ink);
   border-radius: 18px; overflow: hidden; padding: 6px;
   box-shadow: 0 22px 50px rgba(80,30,0,.34);
   animation: locIn .18s ease;
 }
 @keyframes locIn { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: none; } }
+.lm-search {
+  display: flex; align-items: center; gap: 10px;
+  margin: 2px 2px 6px; padding: 0 12px; height: 44px;
+  background: #f6f1ec; border-radius: 12px;
+}
+.lm-search-icon { width: 16px; height: 16px; opacity: .4; }
+.lm-search input {
+  border: none; outline: none; background: transparent; flex: 1;
+  font-size: 15px; font-family: inherit; color: var(--ink);
+}
+.lm-list { list-style: none; margin: 0; padding: 0; max-height: 320px; overflow-y: auto; }
 .loc-menu li {
   display: flex; flex-direction: column; gap: 2px;
   padding: 11px 14px; border-radius: 12px; cursor: pointer;
 }
 .loc-menu li:hover, .loc-menu li:active { background: #fff1e8; }
 .loc-menu li.current { background: #ffe6d6; }
+.loc-menu li.lm-status {
+  cursor: default; text-align: center; color: rgba(0,0,0,.45);
+  font-size: 13px; padding: 16px 14px;
+}
+.loc-menu li.lm-status:hover { background: none; }
 .lm-org { font-weight: 700; font-size: 15px; }
-.lm-addr { font-size: 12px; opacity: .6; }
+.lm-addr { font-size: 12px; opacity: .6;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
 /* ===== Profile bottom sheet ===== */
 .sheet {

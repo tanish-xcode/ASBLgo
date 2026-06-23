@@ -721,10 +721,13 @@ async function router() {
 
 // ---------- location picker ----------
 const LOCATIONS = [
-  { org: 'ASBL', address: '7th Floor, ASBL Hyderabad, Tower 2, PSR Prime Tower, Gachibowli' },
-  { org: 'ASBL Spectra', address: 'Financial District, Nanakramguda, Hyderabad' },
-  { org: 'ASBL Loft View', address: 'Kokapet, Hyderabad' },
-  { org: 'ASBL Springs', address: 'Bachupally, Hyderabad' },
+  { org: 'Gachibowli', address: 'Gachibowli, Hyderabad, Telangana' },
+  { org: 'HITEC City', address: 'HITEC City, Madhapur, Hyderabad' },
+  { org: 'Jubilee Hills', address: 'Jubilee Hills, Hyderabad' },
+  { org: 'Banjara Hills', address: 'Banjara Hills, Hyderabad' },
+  { org: 'Financial District', address: 'Nanakramguda, Hyderabad' },
+  { org: 'Kondapur', address: 'Kondapur, Hyderabad' },
+  { org: 'Secunderabad', address: 'Secunderabad, Hyderabad' },
 ];
 
 function toggleLocationMenu() {

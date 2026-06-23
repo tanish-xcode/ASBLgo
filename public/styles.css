@@ -9,6 +9,7 @@
   --banner: #ec6d3e;
   --banner-deep: #e15f30;
   --cream: #f2ece0;
+  --display: 'New Amsterdam', 'Inter', sans-serif;
   --ink: #1e1e1e;
   --ink-soft: #0d0d0d;
   --white: #ffffff;
@@ -601,6 +602,21 @@ body {
 .detail-artist { font-size: 15px; font-weight: 600; color: rgba(255,255,255,.92);
   text-shadow: 0 1px 8px rgba(0,0,0,.5); }
 
+/* ===== Unified display font for all titles/headings ===== */
+.hero-title,
+.offer-headline,
+.fc-text b,
+.catpage-title,
+.cover-head h2,
+.cover-title,
+.mini-title,
+.feature::before,
+.categories::before {
+  font-family: var(--display);
+  font-weight: 400;
+  letter-spacing: .005em;
+}
+
 .detail-body { padding: 18px 20px 22px; }
 
 .detail-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
@@ -778,12 +794,12 @@ body {
   }
   .categories::before {
     content: 'Browse by vibe'; display: block;
-    font-weight: 800; font-size: 22px; letter-spacing: -.01em; color: var(--ink);
+    font-family: var(--display); font-weight: 400; font-size: 26px; letter-spacing: .01em; color: var(--ink);
     margin: 4px 4px 18px;
   }
   .feature::before {
     content: 'Featured events'; display: block;
-    font-weight: 800; font-size: 22px; letter-spacing: -.01em; color: var(--ink);
+    font-family: var(--display); font-weight: 400; font-size: 26px; letter-spacing: .01em; color: var(--ink);
     margin: 4px 4px 20px;
   }
 

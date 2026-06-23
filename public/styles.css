@@ -843,7 +843,7 @@ body {
 
   /* search bar centered on its own row below the header */
   .locate {
-    background: none; margin: 0; padding-top: 22px; padding-bottom: 8px;
+    background: none; margin-block: 0; padding-top: 22px; padding-bottom: 8px;
   }
   .searchbar { width: 100%; max-width: 620px; margin: 0 auto; }
   .search-results { max-width: 620px; margin-inline: auto; }

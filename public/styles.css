@@ -757,19 +757,36 @@ body {
 
   /* full-width orange header, content capped to the frame */
   .topbar {
-    border-radius: 0; padding: 14px 0;
+    border-radius: 0; padding: 16px 0;
     padding-inline: max(40px, calc((100% - 1180px) / 2));
-    box-shadow: 0 6px 22px rgba(255,84,0,.18);
+    /* warm depth instead of a dead-flat orange slab */
+    background:
+      radial-gradient(70% 180% at 12% -10%, rgba(255,184,110,.40), rgba(255,184,110,0) 55%),
+      linear-gradient(180deg, #ff6e22 0%, var(--orange) 58%, #ef4d00 100%);
+    box-shadow: 0 10px 28px rgba(255,84,0,.22), inset 0 -1px 0 rgba(0,0,0,.08);
   }
-  .logo { height: 44px; }
+  .logo { height: 46px; }
+  .avatar-btn {
+    width: 46px; height: 46px;
+    background: rgba(255,255,255,.18);
+    box-shadow: 0 0 0 2px rgba(255,255,255,.55), 0 6px 14px rgba(120,40,0,.28);
+  }
 
-  /* location + search row */
+  /* location + search row: a clean toolbar instead of floating controls */
   .locate {
-    background: none; margin: 0; padding-top: 26px; padding-bottom: 8px;
-    display: flex; align-items: center; gap: 24px;
+    background: none; margin: 0; padding-top: 24px; padding-bottom: 8px;
+    display: flex; align-items: center; gap: 20px;
   }
-  .location { width: auto; flex: none; }
-  .searchbar { flex: 1; max-width: 520px; margin-left: auto; }
+  .location {
+    width: auto; flex: none; max-width: 440px;
+    background: #fff; border: 1px solid rgba(20,10,0,.06);
+    border-radius: 14px; padding: 8px 14px;
+    box-shadow: 0 6px 16px rgba(150,55,10,.08);
+    transition: box-shadow .2s ease, transform .15s ease;
+  }
+  .location:hover { box-shadow: 0 10px 22px rgba(150,55,10,.14); transform: translateY(-1px); }
+  .loc-addr { font-size: 12.5px; }
+  .searchbar { flex: 1; max-width: 560px; margin-left: auto; margin-top: 0; }
 
   /* hero becomes a flat multi-card banner (coverflow JS still drives it) */
   .hero-wrap { background: none; padding-top: 22px; padding-bottom: 8px; }

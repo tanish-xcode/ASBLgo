@@ -769,10 +769,8 @@ body {
   .topbar {
     border-radius: 0; padding: 16px 0;
     padding-inline: max(40px, calc((100% - 1180px) / 2));
-    /* soft depth around the logo's own coral so the logo blends into the bar */
-    background:
-      radial-gradient(70% 180% at 12% -10%, rgba(255,196,150,.35), rgba(255,196,150,0) 55%),
-      linear-gradient(180deg, #f07a4f 0%, var(--banner) 58%, var(--banner-deep) 100%);
+    /* flat coral that exactly matches the logo background, so it blends seamlessly */
+    background: var(--banner);
     box-shadow: 0 10px 28px rgba(190,80,40,.20), inset 0 -1px 0 rgba(0,0,0,.06);
   }
   /* single-row header: logo left, location card after it, avatar right */

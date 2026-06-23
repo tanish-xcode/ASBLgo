@@ -35,6 +35,7 @@ function toast(msg) {
   clearTimeout(toastTimer);
   toastTimer = setTimeout(() => el.classList.remove('show'), 2600);
 }
+window._toast = toast;
 
 // ---------- render ----------
 function renderLocation(loc) {
@@ -719,6 +720,106 @@ function renderCategory(cat, events) {
   main.addEventListener('pointercancel', endDrag);
 }
 
+// ---------- static pages (about / contact / privacy) ----------
+function openPage(hash) { location.hash = hash; }
+
+function closePage(id) {
+  const v = $('#' + id);
+  if (!v || v.hidden) return;
+  v.hidden = true; v.setAttribute('aria-hidden', 'true'); v.innerHTML = '';
+  document.body.style.overflow = '';
+}
+
+function renderSimplePage(id, html) {
+  closePage('aboutView'); closePage('contactView'); closePage('privacyView');
+  const v = $('#' + id);
+  v.innerHTML = html;
+  v.hidden = false; v.setAttribute('aria-hidden', 'false');
+  v.scrollTop = 0; document.body.style.overflow = 'hidden';
+  v.querySelector('.sp-back')?.addEventListener('click', () => { history.back(); });
+}
+
+function renderAbout() {
+  renderSimplePage('aboutView', `
+    <div class="sp-sheet">
+      <div class="sp-top">
+        <button class="sp-back detail-back" aria-label="Back">‹</button>
+        <span class="sp-heading">About</span>
+      </div>
+      <div class="sp-body">
+        <img class="sp-logo" src="/assets/logo.png" alt="GET OUT" />
+        <h1 class="sp-title">GET OUT</h1>
+        <p class="sp-sub">An ASBL Initiative</p>
+        <p class="sp-para">GET OUT is Hyderabad's curated events discovery platform — built to surface the city's best experiences across music, food, art, and culture. From intimate studio performances in Gachibowli to open-air amphitheatre nights in Hitech City, we bring it all to one place.</p>
+        <p class="sp-para">We partner with venues and curators across Hyderabad to bring you handpicked, quality-vetted events. No noise — just the good stuff.</p>
+        <div class="sp-grid">
+          <div class="sp-stat"><b>6+</b><span>Categories</span></div>
+          <div class="sp-stat"><b>50+</b><span>Events/month</span></div>
+          <div class="sp-stat"><b>HYD</b><span>City-first</span></div>
+        </div>
+        <p class="sp-fine">GET OUT is an initiative by ASBL Spaces, PSR Prime Tower, Gachibowli, Hyderabad — 500032.</p>
+      </div>
+    </div>`);
+}
+
+function renderContact() {
+  renderSimplePage('contactView', `
+    <div class="sp-sheet">
+      <div class="sp-top">
+        <button class="sp-back detail-back" aria-label="Back">‹</button>
+        <span class="sp-heading">Contact</span>
+      </div>
+      <div class="sp-body">
+        <h1 class="sp-title">Get in touch</h1>
+        <p class="sp-para">Have a question, want to list your event, or just want to say hi? Drop us a line.</p>
+        <div class="sp-contact-list">
+          <div class="sp-contact-row">
+            <span class="sp-contact-label">Email</span>
+            <a href="mailto:hello@getout.in" class="sp-contact-val">hello@getout.in</a>
+          </div>
+          <div class="sp-contact-row">
+            <span class="sp-contact-label">Location</span>
+            <span class="sp-contact-val">PSR Prime Tower, Gachibowli, Hyderabad</span>
+          </div>
+          <div class="sp-contact-row">
+            <span class="sp-contact-label">Hours</span>
+            <span class="sp-contact-val">Mon–Sat, 10 AM – 7 PM</span>
+          </div>
+        </div>
+        <form class="sp-form" onsubmit="event.preventDefault(); this.reset(); window._toast && window._toast('Message sent!');">
+          <label class="sp-label">Name
+            <input class="sp-input" type="text" placeholder="Your name" required />
+          </label>
+          <label class="sp-label">Email
+            <input class="sp-input" type="email" placeholder="your@email.com" required />
+          </label>
+          <label class="sp-label">Message
+            <textarea class="sp-input sp-textarea" placeholder="What's on your mind?" rows="4" required></textarea>
+          </label>
+          <button class="sp-send" type="submit">Send message</button>
+        </form>
+      </div>
+    </div>`);
+}
+
+function renderPrivacy() {
+  renderSimplePage('privacyView', `
+    <div class="sp-sheet">
+      <div class="sp-top">
+        <button class="sp-back detail-back" aria-label="Back">‹</button>
+        <span class="sp-heading">Privacy</span>
+      </div>
+      <div class="sp-body">
+        <h1 class="sp-title">Privacy Policy</h1>
+        <p class="sp-para">Last updated: June 2026</p>
+        <p class="sp-para">GET OUT collects only the information needed to show you relevant events and process bookings. We do not sell your data to third parties.</p>
+        <p class="sp-para"><b>What we collect:</b> Location (to surface nearby events), search queries, and booking details. All stored securely and never shared without your consent.</p>
+        <p class="sp-para"><b>Cookies:</b> We use minimal cookies to remember your preferences (location, favourites). No advertising cookies.</p>
+        <p class="sp-para"><b>Contact:</b> For any privacy-related requests, email us at <a href="mailto:privacy@getout.in" class="sp-link">privacy@getout.in</a>.</p>
+      </div>
+    </div>`);
+}
+
 // ---------- router (event detail + category page + deep links) ----------
 async function router() {
   const evM = location.hash.match(/^#\/event\/(.+)$/);
@@ -753,8 +854,13 @@ async function router() {
     return;
   }
 
+  if (location.hash === '#/about') { closeDetail(); closeCategory(); renderAbout(); return; }
+  if (location.hash === '#/contact') { closeDetail(); closeCategory(); renderContact(); return; }
+  if (location.hash === '#/privacy') { closeDetail(); closeCategory(); renderPrivacy(); return; }
+
   closeDetail();
   closeCategory();
+  closePage('aboutView'); closePage('contactView'); closePage('privacyView');
 }
 
 // ---------- location picker ----------

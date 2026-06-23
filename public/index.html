@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=New+Amsterdam&family=Pinyon+Script&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/styles.css?v=28" />
+  <link rel="stylesheet" href="/styles.css?v=29" />
 </head>
 <body>
   <div class="phone">
@@ -73,14 +73,14 @@
     </section>
 
     <footer class="site-footer">
-      <img class="footer-logo" src="/assets/logo-mark.png" alt="GET OUT" />
+      <img class="footer-logo" src="/assets/logo.png" alt="GET OUT" />
       <p class="footer-tag">An ASBL Initiative &mdash; Hyderabad</p>
       <p class="footer-links">
-        <a href="#">About</a>
+        <a href="#/about">About</a>
         <span class="footer-dot">·</span>
-        <a href="#">Contact</a>
+        <a href="#/contact">Contact</a>
         <span class="footer-dot">·</span>
-        <a href="#">Privacy</a>
+        <a href="#/privacy">Privacy</a>
       </p>
       <p class="footer-copy">&copy; 2026 GET OUT. All rights reserved.</p>
     </footer>
@@ -95,9 +95,18 @@
   <!-- profile sheet (bookings + favorites) -->
   <div class="sheet" id="profileView" hidden aria-hidden="true"></div>
 
+  <!-- about page -->
+  <div class="detail" id="aboutView" hidden aria-hidden="true"></div>
+
+  <!-- contact page -->
+  <div class="detail" id="contactView" hidden aria-hidden="true"></div>
+
+  <!-- privacy page -->
+  <div class="detail" id="privacyView" hidden aria-hidden="true"></div>
+
   <!-- toast -->
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-  <script src="/app.js?v=20"></script>
+  <script src="/app.js?v=21"></script>
 </body>
 </html>

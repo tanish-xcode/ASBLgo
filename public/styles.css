@@ -837,17 +837,16 @@ body {
   .scenes { background: none; padding-top: 8px; padding-bottom: 60px; }
 
   .offer {
-    margin: 0 0 12px; border-radius: 24px; min-height: 0; padding: 22px 30px;
+    margin: 0 0 12px; border-radius: 22px; min-height: 0; padding: 18px 30px;
     align-items: center; gap: 30px;
     box-shadow: 0 16px 40px rgba(120,40,0,.14);
   }
   .offer-copy { flex: none; }
-  .offer-title { font-size: 40px; }
-  .offer-headline { font-size: 26px; margin-top: 14px; }
-  .offer-sub { font-size: 16px; }
-  .offer-art { width: 52%; align-self: stretch; min-height: 300px; margin-left: auto; margin-right: -18px; }
+  .offer-title { font-size: 34px; }
+  .offer-headline { font-size: 23px; margin-top: 10px; }
+  .offer-sub { font-size: 15px; }
+  .offer-art { width: 40%; align-self: stretch; min-height: 170px; margin-left: auto; margin-right: -18px; }
   .offer-art > img { object-fit: contain; object-position: right center; }
-  .book-now { left: auto; right: 6%; }
 
   /* featured events: real card grid instead of the JS coverflow rail */
   .feature { background: none; border-radius: 0; padding: 0; }

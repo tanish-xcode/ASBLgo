@@ -99,7 +99,6 @@ function renderOffer(offer) {
     ${offer.headline ? `<div class="offer-headline">${offer.headline}</div>` : ''}
     ${offer.sub ? `<div class="offer-sub">${offer.sub}</div>` : ''}`;
   $('#offerImg').src = offer.image;
-  $('#bookNow').textContent = offer.cta;
 }
 
 // ---------- featured events carousel ----------
@@ -889,13 +888,6 @@ function renderProfile(data) {
 }
 
 function wireStatic() {
-  $('#bookNow').addEventListener('click', async () => {
-    const btn = $('#bookNow');
-    btn.classList.add('booked');
-    btn.textContent = 'BOOKED ✓';
-    await openBooking({ offerId: state.offer?.id, label: 'Scenes worthy offer' });
-    setTimeout(() => { btn.classList.remove('booked'); btn.textContent = state.offer?.cta || 'BOOK NOW'; }, 1800);
-  });
   $('#viewAll').addEventListener('click', () => {
     state.selectedCat = null;
     $('#catGrid').querySelectorAll('.cat-tile').forEach((t) => t.classList.remove('selected'));

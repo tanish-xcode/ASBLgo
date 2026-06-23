@@ -285,16 +285,26 @@ body {
 .offer {
   position: relative; z-index: 5;
   margin: -56px 0 0;
-  border-radius: 34px 34px 0 0;
+  min-height: 226px; background: var(--cream);
+  border-radius: 34px 34px 0 0; padding: 42px 22px 22px;
+  display: flex; align-items: flex-start; gap: 14px; color: var(--ink);
   overflow: hidden;
   box-shadow: 0 16px 34px rgba(120, 40, 0, 0.24);
 }
-.offer-banner {
-  display: block; width: 100%;
-  height: 200px;
-  object-fit: cover;
-  object-position: 35% center;
+.offer-copy { flex: 1; }
+.offer-title {
+  font-family: 'New Amsterdam', 'Inter', sans-serif;
+  font-size: 46px; line-height: .82; color: var(--orange-bright);
+  text-transform: uppercase; font-weight: 800; letter-spacing: -1px;
 }
+.offer-headline { font-weight: 800; font-size: 22px; margin-top: 12px; letter-spacing: -1px; }
+.offer-sub { font-size: 15px; opacity: .8; }
+.offer-art { position: relative; width: 46%; align-self: stretch; min-height: 150px; }
+.offer-art > img {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; border-radius: var(--radius-md);
+}
+.offer-banner { display: none; }
 .book-now {
   position: absolute; left: 50%; bottom: -10px; transform: translateX(-50%);
   background: var(--cream); color: var(--ink); border: none;
@@ -317,7 +327,7 @@ body {
 }
 .feature-track {
   position: relative;
-  margin-top: 0;
+  margin-top: -72px;
   height: 295px;
   overflow-x: auto; overflow-y: hidden;
   scrollbar-width: none; -webkit-overflow-scrolling: touch;
@@ -884,8 +894,13 @@ body {
   /* scenes wrapper: drop the overlapping orange bands */
   .scenes { background: none; padding-top: 8px; padding-bottom: 60px; }
 
-  .offer { margin: 0 0 12px; border-radius: 22px; box-shadow: 0 16px 40px rgba(120,40,0,.14); }
-  .offer-banner { height: auto; object-fit: unset; object-position: unset; }
+  .offer {
+    margin: 0 0 12px; border-radius: 22px; padding: 0;
+    min-height: 0; display: block;
+    box-shadow: 0 16px 40px rgba(120,40,0,.14);
+  }
+  .offer-copy, .offer-art { display: none; }
+  .offer-banner { display: block; width: 100%; height: auto; }
 
   /* featured events: real card grid instead of the JS coverflow rail */
   .feature { background: none; border-radius: 0; padding: 0; }

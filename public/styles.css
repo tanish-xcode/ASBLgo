@@ -642,6 +642,39 @@ body {
   letter-spacing: .08em; color: var(--orange-bright); margin-bottom: 10px; }
 .detail-desc p { font-size: 16px; line-height: 1.7; opacity: .82; }
 
+/* enriched right-column sections */
+.detail-section { margin-bottom: 22px; }
+.detail-section h3 {
+  font-size: 12px; font-weight: 800; text-transform: uppercase;
+  letter-spacing: .08em; color: var(--orange-bright); margin-bottom: 12px;
+}
+.highlights { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+.highlights li {
+  display: flex; align-items: center; gap: 12px;
+  font-size: 15px; font-weight: 600; color: var(--ink);
+}
+.hl-ico {
+  width: 26px; height: 26px; flex: none; border-radius: 8px; display: grid; place-items: center;
+  background: rgba(255,102,0,.12);
+}
+.hl-ico svg { width: 15px; height: 15px; fill: none; stroke: var(--orange-bright);
+  stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+
+.info-grid { display: grid; grid-template-columns: 1fr; gap: 10px; }
+.info-cell {
+  display: flex; align-items: center; gap: 10px;
+  background: #fff; border-radius: 14px; padding: 12px;
+  box-shadow: 0 4px 14px rgba(120,40,0,.07);
+}
+.info-ico { width: 30px; height: 30px; flex: none; border-radius: 9px; display: grid; place-items: center;
+  background: rgba(255,102,0,.12); }
+.info-ico svg { width: 17px; height: 17px; fill: none; stroke: var(--orange-bright);
+  stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.info-txt { display: flex; flex-direction: column; gap: 1px; min-width: 0; }
+.info-txt small { font-size: 10.5px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: .04em; opacity: .55; }
+.info-txt b { font-size: 13.5px; font-weight: 700; line-height: 1.2; }
+
 .detail-seats {
   display: inline-flex; align-items: center; gap: 8px;
   font-size: 13px; font-weight: 700; color: #b3431a;
@@ -715,6 +748,7 @@ body {
   .detail-book { font-size: 26px; padding: 18px; }
 
   .detail-desc p { font-size: 16px; }
+  .info-grid { grid-template-columns: repeat(3, 1fr); }
 }
 
 /* ===== Home — desktop multi-column layout ===== */

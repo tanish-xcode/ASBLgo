@@ -385,7 +385,27 @@ const DICON = {
   tag: '<svg viewBox="0 0 24 24"><path d="M3 12V4a1 1 0 0 1 1-1h8l9 9-9 9-9-9z"/><circle cx="7.5" cy="7.5" r="1.4"/></svg>',
   share: '<svg viewBox="0 0 24 24"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>',
   arrow: '<svg viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8"/></svg>',
+  check: '<svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>',
+  ticket: '<svg viewBox="0 0 24 24"><path d="M4 8a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2 2 2 0 0 0 0 4 2 2 0 0 1-2 2H6a2 2 0 0 1-2-2 2 2 0 0 0 0-4z"/><path d="M14 6v12"/></svg>',
+  seat: '<svg viewBox="0 0 24 24"><path d="M5 10V6a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v4M4 10h16v6H4zM6 16v3M18 16v3"/></svg>',
+  shield: '<svg viewBox="0 0 24 24"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg>',
 };
+
+// generic but on-brand experience highlights, keyed by category
+const HIGHLIGHTS = {
+  'fine-dining': ['Chef-curated tasting menu', 'Live music pairing', 'Unhurried long-table seating'],
+  'the-stage': ['Live dance & movement', "Chef's tasting flight included", 'One ticket, two art forms'],
+  'crafts': ['Hands-on with master artisans', 'Take your creation home', 'All materials included'],
+  'spaces': ['Guided curated walkthrough', 'Intimate, limited entry', 'Meet the makers'],
+  'stories': ['Live storytelling session', 'Up-close, intimate setting', 'Q&A with the artists'],
+};
+const HL_FALLBACK = ['Curated live experience', 'Thoughtfully small gathering', 'Food & art under one roof'];
+
+const GOOD_TO_KNOW = [
+  { i: 'seat', k: 'Seating', v: 'Reserved' },
+  { i: 'ticket', k: 'Entry', v: 'Mobile e-ticket' },
+  { i: 'shield', k: 'Cancellation', v: 'Free up to 24h' },
+];
 
 function renderDetail(ev) {
   const view = $('#detailView');
@@ -445,6 +465,25 @@ function renderDetail(ev) {
             <h3>About this event</h3>
             <p>${ev.description}</p>
           </div>` : ''}
+
+        <div class="detail-section">
+          <h3>Highlights</h3>
+          <ul class="highlights">
+            ${(HIGHLIGHTS[ev.category] || HL_FALLBACK).map((h) => `
+              <li><span class="hl-ico">${DICON.check}</span>${h}</li>`).join('')}
+          </ul>
+        </div>
+
+        <div class="detail-section">
+          <h3>Good to know</h3>
+          <div class="info-grid">
+            ${GOOD_TO_KNOW.map((g) => `
+              <div class="info-cell">
+                <span class="info-ico">${DICON[g.i]}</span>
+                <div class="info-txt"><small>${g.k}</small><b>${g.v}</b></div>
+              </div>`).join('')}
+          </div>
+        </div>
 
         <div class="detail-seats">
           <span class="dot"></span>${seatsLeft} spots left — book soon

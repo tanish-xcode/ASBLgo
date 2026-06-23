@@ -284,25 +284,13 @@ body {
 
 .offer {
   position: relative; z-index: 5;
-  margin: -56px 0 0;                 /* full-width band, overhanging up into the categories' orange to divide the sections */
-  min-height: 226px; background: var(--cream);
-  border-radius: 34px 34px 0 0; padding: 42px 22px 22px;
-  display: flex; align-items: flex-start; gap: 14px; color: var(--ink);
+  margin: -56px 0 0;
+  border-radius: 34px 34px 0 0;
   overflow: hidden;
-  box-shadow: 0 16px 34px rgba(120, 40, 0, 0.24);  /* keep the card defined over the light lip */
+  box-shadow: 0 16px 34px rgba(120, 40, 0, 0.24);
 }
-.offer-copy { flex: 1; }
-.offer-title {
-  font-family: 'New Amsterdam', 'Inter', sans-serif; font-weight: 400;
-  font-size: 46px; line-height: .82; color: var(--orange-bright);
-  -webkit-text-stroke: 0; text-transform: uppercase; font-weight: 800; letter-spacing: -1px;
-}
-.offer-headline { font-weight: 800; font-size: 22px; margin-top: 12px; letter-spacing: -1px; }
-.offer-sub { font-size: 15px; opacity: .8; }
-.offer-art { position: relative; width: 46%; align-self: stretch; min-height: 150px; }
-.offer-art > img {
-  position: absolute; inset: 0; width: 100%; height: 100%;
-  object-fit: cover; border-radius: var(--radius-md);
+.offer-banner {
+  display: block; width: 100%; height: auto;
 }
 .book-now {
   position: absolute; left: 50%; bottom: -10px; transform: translateX(-50%);
@@ -611,7 +599,6 @@ body {
 
 /* ===== Unified display font for all titles/headings ===== */
 .hero-title,
-.offer-headline,
 .fc-text b,
 .catpage-title,
 .cover-head h2,
@@ -894,17 +881,7 @@ body {
   /* scenes wrapper: drop the overlapping orange bands */
   .scenes { background: none; padding-top: 8px; padding-bottom: 60px; }
 
-  .offer {
-    margin: 0 0 12px; border-radius: 22px; min-height: 0; padding: 18px 30px;
-    align-items: center; gap: 30px;
-    box-shadow: 0 16px 40px rgba(120,40,0,.14);
-  }
-  .offer-copy { flex: none; }
-  .offer-title { font-size: 34px; }
-  .offer-headline { font-size: 23px; margin-top: 10px; }
-  .offer-sub { font-size: 15px; }
-  .offer-art { width: 40%; align-self: stretch; min-height: 170px; margin-left: auto; margin-right: -18px; }
-  .offer-art > img { object-fit: contain; object-position: right center; }
+  .offer { margin: 0 0 12px; border-radius: 22px; box-shadow: 0 16px 40px rgba(120,40,0,.14); }
 
   /* featured events: real card grid instead of the JS coverflow rail */
   .feature { background: none; border-radius: 0; padding: 0; }

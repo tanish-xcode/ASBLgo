@@ -290,7 +290,10 @@ body {
   box-shadow: 0 16px 34px rgba(120, 40, 0, 0.24);
 }
 .offer-banner {
-  display: block; width: 100%; height: auto;
+  display: block; width: 100%;
+  height: 200px;
+  object-fit: cover;
+  object-position: 35% center;
 }
 .book-now {
   position: absolute; left: 50%; bottom: -10px; transform: translateX(-50%);
@@ -314,7 +317,7 @@ body {
 }
 .feature-track {
   position: relative;
-  margin-top: -72px;                 /* slide up so the featured card bleeds into the offer card */
+  margin-top: 0;
   height: 295px;
   overflow-x: auto; overflow-y: hidden;
   scrollbar-width: none; -webkit-overflow-scrolling: touch;
@@ -882,6 +885,7 @@ body {
   .scenes { background: none; padding-top: 8px; padding-bottom: 60px; }
 
   .offer { margin: 0 0 12px; border-radius: 22px; box-shadow: 0 16px 40px rgba(120,40,0,.14); }
+  .offer-banner { height: auto; object-fit: unset; object-position: unset; }
 
   /* featured events: real card grid instead of the JS coverflow rail */
   .feature { background: none; border-radius: 0; padding: 0; }

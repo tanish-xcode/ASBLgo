@@ -5,6 +5,9 @@
   --orange: #ff5400;
   --orange-bright: #ff6600;
   --orange-deep: #993d00;
+  /* matches the logo's coral-orange background so the banner blends with it */
+  --banner: #ec6d3e;
+  --banner-deep: #e15f30;
   --cream: #f2ece0;
   --ink: #1e1e1e;
   --ink-soft: #0d0d0d;
@@ -59,7 +62,7 @@ body {
 
 /* ===== Header ===== */
 .topbar {
-  background: var(--orange);
+  background: var(--banner);
   border-radius: 0 0 26px 26px;
   padding: 8px 22px 14px;
   display: flex;
@@ -70,7 +73,7 @@ body {
   position: sticky;
   top: 0;
   z-index: 40;
-  box-shadow: 0 10px 26px rgba(255, 84, 0, 0.28);
+  box-shadow: 0 10px 26px rgba(190, 80, 40, 0.26);
 }
 .logo { height: 40px; width: auto; object-fit: contain; order: 1; }
 /* location card now lives in the orange bar; on mobile it wraps to its own row */
@@ -766,11 +769,11 @@ body {
   .topbar {
     border-radius: 0; padding: 16px 0;
     padding-inline: max(40px, calc((100% - 1180px) / 2));
-    /* warm depth instead of a dead-flat orange slab */
+    /* soft depth around the logo's own coral so the logo blends into the bar */
     background:
-      radial-gradient(70% 180% at 12% -10%, rgba(255,184,110,.40), rgba(255,184,110,0) 55%),
-      linear-gradient(180deg, #ff6e22 0%, var(--orange) 58%, #ef4d00 100%);
-    box-shadow: 0 10px 28px rgba(255,84,0,.22), inset 0 -1px 0 rgba(0,0,0,.08);
+      radial-gradient(70% 180% at 12% -10%, rgba(255,196,150,.35), rgba(255,196,150,0) 55%),
+      linear-gradient(180deg, #f07a4f 0%, var(--banner) 58%, var(--banner-deep) 100%);
+    box-shadow: 0 10px 28px rgba(190,80,40,.20), inset 0 -1px 0 rgba(0,0,0,.06);
   }
   /* single-row header: logo left, location card after it, avatar right */
   .topbar { flex-wrap: nowrap; }

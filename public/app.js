@@ -927,12 +927,6 @@ function renderProfile(data) {
 }
 
 function wireStatic() {
-  $('#viewAll').addEventListener('click', () => {
-    state.selectedCat = null;
-    $('#catGrid').querySelectorAll('.cat-tile').forEach((t) => t.classList.remove('selected'));
-    renderEvents([...state.featured, ...state.events]);
-    toast('Showing all events');
-  });
   $('#avatarBtn').addEventListener('click', openProfile);
   $('#locationBtn').addEventListener('click', (e) => { e.stopPropagation(); toggleLocationMenu(); });
 

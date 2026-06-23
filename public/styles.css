@@ -376,12 +376,19 @@ body {
   width: 3px; height: 64px; border-radius: 4px; background: rgba(255,255,255,.85);
 }
 
-.feature-foot { display: flex; align-items: center; gap: 16px; padding: 4px 26px 12px; }
-.foot-line { flex: 1; height: 1px; background: rgba(255,255,255,.45); }
-.view-all {
-  background: none; border: none; color: #fff; font-size: 16px;
-  cursor: pointer; font-weight: 600; opacity: .96; white-space: nowrap;
+.site-footer {
+  text-align: center;
+  padding: 36px 24px 48px;
+  border-top: 1px solid rgba(120,40,0,.12);
+  margin-top: 8px;
 }
+.footer-logo { height: 52px; opacity: .72; margin-bottom: 12px; }
+.footer-tag { font-size: 13px; color: var(--ink); opacity: .5; font-weight: 500; margin: 0 0 14px; }
+.footer-links { margin: 0 0 10px; display: flex; align-items: center; justify-content: center; gap: 10px; }
+.footer-links a { font-size: 13px; color: var(--ink); opacity: .55; text-decoration: none; font-weight: 500; }
+.footer-links a:hover { opacity: .9; }
+.footer-dot { color: var(--ink); opacity: .25; font-size: 13px; }
+.footer-copy { font-size: 12px; color: var(--ink); opacity: .35; margin: 0; }
 
 /* ===== Toast ===== */
 .toast {
@@ -921,9 +928,7 @@ body {
   .fc-text b { color: var(--ink); font-size: 18px; }
   .fc-text span { color: var(--ink); opacity: .6; font-size: 14px; }
 
-  .feature-foot { max-width: 1180px; margin-inline: auto; padding: 24px 40px 0; }
-  .foot-line { background: rgba(120,40,0,.18); }
-  .view-all { color: var(--orange-deep); }
+  .site-footer { max-width: 1180px; margin-inline: auto; padding: 48px 40px 64px; }
 }
 
 /* ===== Scroll reveal ===== */

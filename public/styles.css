@@ -594,8 +594,9 @@ body {
   box-shadow: 0 6px 16px rgba(255,102,0,.4);
 }
 .detail-title {
-  font-family: 'Pinyon Script', cursive; font-size: 56px; line-height: .9;
-  color: #fff; text-shadow: 0 2px 18px rgba(0,0,0,.45); margin-bottom: 2px;
+  font-family: 'New Amsterdam', 'Inter', sans-serif; font-weight: 400;
+  font-size: 50px; line-height: .98; letter-spacing: .01em;
+  color: #fff; text-shadow: 0 2px 18px rgba(0,0,0,.45); margin-bottom: 4px;
 }
 .detail-artist { font-size: 15px; font-weight: 600; color: rgba(255,255,255,.92);
   text-shadow: 0 1px 8px rgba(0,0,0,.5); }

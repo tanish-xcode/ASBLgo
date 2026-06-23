@@ -379,8 +379,8 @@ body {
 .site-footer {
   text-align: center;
   padding: 36px 24px 48px;
+  background: var(--cream);
   border-top: 1px solid rgba(120,40,0,.12);
-  margin-top: 8px;
 }
 .footer-logo { height: 52px; opacity: .72; margin-bottom: 12px; }
 .footer-tag { font-size: 13px; color: var(--ink); opacity: .5; font-weight: 500; margin: 0 0 14px; }

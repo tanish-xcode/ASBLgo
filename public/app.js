@@ -87,7 +87,17 @@ function renderCategories(cats) {
     const tile = document.createElement('div');
     tile.className = 'cat-tile';
     tile.dataset.id = c.id;
-    tile.innerHTML = `<img src="${c.image}" alt="${c.name}" /><span class="cat-name">${c.name}</span><span class="cat-arrow">›</span>`;
+    tile.innerHTML = `
+      <img src="${c.image}" alt="${c.name}" />
+      <div class="cat-inner">
+        <span class="cat-tag">Browse</span>
+        <span class="cat-name">${c.name}</span>
+        <span class="cat-cta">Explore
+          <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M2 6h8M7 3l3 3-3 3"/>
+          </svg>
+        </span>
+      </div>`;
     tile.addEventListener('click', () => openCategory(c.id));
     grid.appendChild(tile);
   });

@@ -610,6 +610,15 @@ function renderCategory(cat, events) {
             <button class="ctl-btn left" id="coverPlay" aria-label="Open first event" ${events.length ? '' : 'disabled'}>${ICON.play}</button>
             <button class="ctl-btn right" id="coverNight" aria-label="Toggle mood">${ICON.moon}</button>
           </div>
+          <div class="cat-nav">
+            <button class="cat-nav-btn" id="catPrev" aria-label="Previous category">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+            </button>
+            <span class="cat-nav-pos" id="catNavPos"></span>
+            <button class="cat-nav-btn" id="catNext" aria-label="Next category">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+            </button>
+          </div>
         </div>
       </div>
 
@@ -662,6 +671,20 @@ function renderCategory(cat, events) {
   catSlideDir = 0;
 
   $('#catBack').addEventListener('click', goBackFromDetail);
+  const cats = state.categories;
+  const idx = cats.findIndex((c) => c.id === cat.id);
+  $('#catNavPos').textContent = `${idx + 1} / ${cats.length}`;
+  const go = (dir) => {
+    if (sliding) return;
+    sliding = true;
+    catSlideDir = dir;
+    main.style.transition = 'transform .2s ease-in, opacity .2s ease-in';
+    main.style.transform = dir > 0 ? 'translateX(-112%)' : 'translateX(112%)';
+    main.style.opacity = '0';
+    setTimeout(() => openCategory(cats[(idx + dir + cats.length) % cats.length].id), 170);
+  };
+  $('#catPrev').addEventListener('click', () => go(-1));
+  $('#catNext').addEventListener('click', () => go(1));
   $('#catShare').addEventListener('click', async () => {
     const link = location.origin + '/#/category/' + cat.id;
     try {
@@ -687,18 +710,7 @@ function renderCategory(cat, events) {
   );
 
   // live drag: the cover follows the cursor, then commits to the next/prev category or springs back
-  const cats = state.categories;
-  const idx = cats.findIndex((c) => c.id === cat.id);
   let sliding = false;
-  const go = (dir) => {
-    if (sliding) return;
-    sliding = true;
-    catSlideDir = dir;
-    main.style.transition = 'transform .2s ease-in, opacity .2s ease-in';
-    main.style.transform = dir > 0 ? 'translateX(-112%)' : 'translateX(112%)';
-    main.style.opacity = '0';
-    setTimeout(() => openCategory(cats[(idx + dir + cats.length) % cats.length].id), 170);
-  };
 
   let sx = 0, sy = 0, dx = 0, dragging = false, horizontal = null;
   main.addEventListener('pointerdown', (e) => {

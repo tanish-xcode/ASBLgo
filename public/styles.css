@@ -548,6 +548,7 @@ body {
 .cover-pin svg { width: 18px; height: 18px; fill: var(--orange-bright); }
 .cover-title { padding: 62px 4px 0; font-size: 44px; font-weight: 800; line-height: .95; letter-spacing: -1.5px; }
 .cover-month { padding: 9px 5px 16px; font-size: 12px; font-weight: 700; letter-spacing: .55em; opacity: .4; }
+.cat-nav { display: none; }
 .cover-hero {
   position: relative; border-radius: 26px; overflow: hidden; aspect-ratio: 4 / 3; background: #d8d2c6;
   box-shadow: 0 18px 40px rgba(55,48,35,.22);
@@ -1019,9 +1020,26 @@ body {
     border-radius: 0 0 26px 26px;
   }
 
-  /* position play/mood buttons at bottom of the hero */
-  .ctl-btn.left  { bottom: 22px; left: 22px; }
-  .ctl-btn.right { bottom: 22px; right: 22px; }
+  /* hide mobile-only play/mood buttons */
+  .ctl-btn { display: none; }
+
+  /* desktop category nav */
+  .cat-nav {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-top: 18px; padding: 0 4px;
+  }
+  .cat-nav-btn {
+    width: 40px; height: 40px; border-radius: 50%; border: none; cursor: pointer;
+    background: rgba(55,48,35,.1); color: var(--ink);
+    display: grid; place-items: center;
+    transition: background .15s ease, transform .15s ease;
+  }
+  .cat-nav-btn:hover { background: rgba(55,48,35,.18); transform: scale(1.06); }
+  .cat-nav-btn:active { transform: scale(.92); }
+  .cat-nav-btn svg { width: 18px; height: 18px; }
+  .cat-nav-pos {
+    font-size: 13px; font-weight: 700; opacity: .4; letter-spacing: .06em;
+  }
 
   .catpage-body {
     grid-column: 2; grid-row: 2;

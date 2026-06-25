@@ -1023,22 +1023,32 @@ body {
   /* hide mobile-only play/mood buttons */
   .ctl-btn { display: none; }
 
-  /* desktop category nav */
+  /* desktop category nav — floating side arrows over the hero */
   .cat-nav {
-    display: flex; align-items: center; justify-content: space-between;
-    margin-top: 18px; padding: 0 4px;
+    display: block;
+    position: absolute; inset: 0; z-index: 6;
+    pointer-events: none;
   }
   .cat-nav-btn {
-    width: 40px; height: 40px; border-radius: 50%; border: none; cursor: pointer;
-    background: rgba(55,48,35,.1); color: var(--ink);
-    display: grid; place-items: center;
-    transition: background .15s ease, transform .15s ease;
+    pointer-events: auto;
+    position: absolute; top: 50%; transform: translateY(-50%);
+    width: 48px; height: 48px; border-radius: 50%; border: none; cursor: pointer;
+    background: rgba(255,255,255,.92); backdrop-filter: blur(8px);
+    color: #2a2620; display: grid; place-items: center;
+    box-shadow: 0 8px 22px rgba(0,0,0,.26);
+    transition: transform .16s ease, background .16s ease;
   }
-  .cat-nav-btn:hover { background: rgba(55,48,35,.18); transform: scale(1.06); }
-  .cat-nav-btn:active { transform: scale(.92); }
-  .cat-nav-btn svg { width: 18px; height: 18px; }
+  #catPrev { left: 14px; }
+  #catNext { right: 14px; }
+  .cat-nav-btn:hover { background: #fff; transform: translateY(-50%) scale(1.08); }
+  .cat-nav-btn:active { transform: translateY(-50%) scale(.94); }
+  .cat-nav-btn svg { width: 20px; height: 20px; }
   .cat-nav-pos {
-    font-size: 13px; font-weight: 700; opacity: .4; letter-spacing: .06em;
+    pointer-events: none;
+    position: absolute; top: 16px; left: 50%; transform: translateX(-50%);
+    background: rgba(10,5,0,.55); backdrop-filter: blur(6px);
+    color: #fff; font-size: 12px; font-weight: 700; letter-spacing: .08em;
+    padding: 5px 13px; border-radius: 999px;
   }
 
   .catpage-body {

@@ -461,21 +461,40 @@ body {
   font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .05em;
   color: var(--orange-bright); margin: 6px 4px 14px;
 }
-.catpage-list { display: flex; flex-direction: column; gap: 12px; }
+.catpage-list { display: flex; flex-direction: column; gap: 14px; }
 .cp-card {
-  display: flex; align-items: center; gap: 14px; cursor: pointer;
-  background: #fbf8f2; border-radius: 18px; padding: 10px;
-  box-shadow: 0 6px 16px rgba(55,48,35,.08);
-  transition: transform .15s ease, box-shadow .2s ease;
+  cursor: pointer; background: #fbf8f2; border-radius: 20px; overflow: hidden;
+  box-shadow: 0 6px 20px rgba(55,48,35,.09);
+  transition: transform .18s ease, box-shadow .2s ease;
 }
 .cp-card:active { transform: scale(.98); }
-.cp-thumb { width: 76px; height: 76px; flex: none; border-radius: 13px; overflow: hidden; background: #eee; }
-.cp-thumb img { width: 100%; height: 100%; object-fit: cover; }
-.cp-info { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
-.cp-info b { font-size: 16px; font-weight: 800; }
-.cp-sub { font-size: 13px; opacity: .7; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.cp-meta { font-size: 12px; opacity: .55; font-weight: 600; }
-.cp-price { flex: none; align-self: center; font-size: 15px; font-weight: 800; color: var(--orange-bright); }
+
+.cp-img {
+  position: relative; width: 100%; aspect-ratio: 16 / 7; overflow: hidden; background: #d8d2c6;
+}
+.cp-img img { width: 100%; height: 100%; object-fit: cover; transition: transform .35s ease; }
+.cp-card:hover .cp-img img { transform: scale(1.04); }
+.cp-price-pill {
+  position: absolute; top: 12px; right: 12px;
+  background: rgba(10,5,0,.6); backdrop-filter: blur(6px);
+  color: #fff; font-size: 13px; font-weight: 800;
+  padding: 5px 11px; border-radius: 999px;
+  letter-spacing: .01em;
+}
+
+.cp-info {
+  padding: 14px 16px 16px;
+  display: flex; flex-direction: column; gap: 10px;
+}
+.cp-info-top { display: flex; flex-direction: column; gap: 3px; }
+.cp-title { font-size: 17px; font-weight: 800; color: #2a2620; display: block; }
+.cp-venue { font-size: 13px; opacity: .6; font-weight: 500; }
+.cp-info-foot {
+  display: flex; align-items: center; justify-content: space-between;
+  padding-top: 10px; border-top: 1px solid rgba(55,48,35,.08);
+}
+.cp-meta { font-size: 12px; font-weight: 700; opacity: .5; letter-spacing: .02em; }
+.cp-artist { font-size: 12px; font-weight: 600; opacity: .55; }
 .catpage-empty { opacity: .55; font-size: 15px; padding: 18px 4px; text-align: center; }
 
 /* ----- immersive category cover ----- */
@@ -963,9 +982,12 @@ body {
 
   .cover-top {
     grid-column: 1 / -1;
-    padding: 20px 48px 0;
+    padding: 28px 48px 0;
     background: transparent;
+    align-items: flex-start;
   }
+  .cover-head h2 { font-size: 14px; letter-spacing: .08em; opacity: .5; font-weight: 700; text-transform: uppercase; }
+  .cover-head span { font-size: 12px; }
   .cover-icon { background: rgba(0,0,0,.07); }
 
   .cover-stack {
@@ -985,18 +1007,12 @@ body {
   }
   .catpage-heading { font-size: 13px; margin-bottom: 18px; }
 
-  .catpage-list { gap: 14px; }
-  .cp-card {
-    padding: 14px; gap: 18px; border-radius: 20px;
-    box-shadow: 0 8px 24px rgba(55,48,35,.09);
-    transition: transform .15s ease, box-shadow .2s ease;
-  }
-  .cp-card:hover { transform: translateY(-3px); box-shadow: 0 14px 32px rgba(55,48,35,.14); }
-  .cp-thumb { width: 88px; height: 88px; border-radius: 16px; }
-  .cp-info b { font-size: 17px; }
-  .cp-sub { font-size: 14px; }
-  .cp-meta { font-size: 13px; }
-  .cp-price { font-size: 17px; }
+  .catpage-list { gap: 18px; }
+  .cp-card:hover { transform: translateY(-4px); box-shadow: 0 16px 36px rgba(55,48,35,.14); }
+  .cp-img { aspect-ratio: 16 / 8; }
+  .cp-title { font-size: 19px; }
+  .cp-venue { font-size: 14px; }
+  .cp-meta, .cp-artist { font-size: 13px; }
 }
 
 /* ===== Static pages (about / contact / privacy) ===== */

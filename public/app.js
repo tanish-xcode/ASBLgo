@@ -618,13 +618,20 @@ function renderCategory(cat, events) {
         ${events.length
           ? `<div class="catpage-list">${events.map((ev) => `
               <article class="cp-card" data-id="${ev.id}">
-                <div class="cp-thumb"><img src="${ev.image}" alt="${ev.title}" /></div>
-                <div class="cp-info">
-                  <b>${ev.title}</b>
-                  <span class="cp-sub">${ev.artist || ev.subtitle || ''}</span>
-                  <span class="cp-meta">${ev.date || 'TBA'}${ev.time ? ' · ' + ev.time : ''}</span>
+                <div class="cp-img">
+                  <img src="${ev.image}" alt="${ev.title}" />
+                  <span class="cp-price-pill">${ev.priceFrom ? '₹' + ev.priceFrom.toLocaleString('en-IN') : 'Free'}</span>
                 </div>
-                <span class="cp-price">${ev.priceFrom ? '₹' + ev.priceFrom.toLocaleString('en-IN') : 'Free'}</span>
+                <div class="cp-info">
+                  <div class="cp-info-top">
+                    <b class="cp-title">${ev.title}</b>
+                    <span class="cp-venue">${ev.venue || ev.subtitle || ''}</span>
+                  </div>
+                  <div class="cp-info-foot">
+                    <span class="cp-meta">${ev.date || 'TBA'}${ev.time ? ' · ' + ev.time : ''}</span>
+                    <span class="cp-artist">${ev.artist || ''}</span>
+                  </div>
+                </div>
               </article>`).join('')}</div>`
           : `<p class="catpage-empty">No events in ${cat.name} yet — check back soon.</p>`}
       </div>

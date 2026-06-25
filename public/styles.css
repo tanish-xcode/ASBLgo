@@ -990,16 +990,38 @@ body {
   .cover-head span { font-size: 12px; }
   .cover-icon { background: rgba(0,0,0,.07); }
 
+  /* left panel: full immersive hero */
   .cover-stack {
     grid-column: 1; grid-row: 2;
-    margin: 24px 0 0 48px; padding-top: 0;
+    margin: 24px 0 32px 48px; padding-top: 0;
     position: sticky; top: 24px; align-self: start;
   }
-  .stack-card.s2 { width: 80%; }
-  .stack-card.s3 { width: 66%; }
 
-  .cover-title { font-size: 56px; }
-  .cover-hero { aspect-ratio: 4 / 3; border-radius: 22px; }
+  /* hide mobile-only decorative elements */
+  .stack-card, .cover-thumb, .cover-pin, .cover-month { display: none; }
+
+  /* hero fills the left column */
+  .cover-hero {
+    aspect-ratio: unset;
+    height: min(560px, 72vh);
+    border-radius: 26px;
+    box-shadow: 0 24px 56px rgba(55,48,35,.28);
+  }
+
+  /* title overlaid on the image */
+  .cover-title {
+    position: absolute; left: 0; right: 0; bottom: 0; z-index: 4;
+    padding: 80px 28px 28px;
+    font-family: var(--display); font-weight: 400;
+    font-size: 52px; line-height: 1; letter-spacing: .01em;
+    color: #fff;
+    background: linear-gradient(to top, rgba(10,5,0,.82) 0%, transparent 100%);
+    border-radius: 0 0 26px 26px;
+  }
+
+  /* position play/mood buttons at bottom of the hero */
+  .ctl-btn.left  { bottom: 22px; left: 22px; }
+  .ctl-btn.right { bottom: 22px; right: 22px; }
 
   .catpage-body {
     grid-column: 2; grid-row: 2;

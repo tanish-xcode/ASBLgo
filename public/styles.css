@@ -949,6 +949,54 @@ body {
   .fc-text span { color: var(--ink); opacity: .6; font-size: 14px; }
 
   .site-footer { max-width: 1180px; margin-inline: auto; padding: 48px 40px 64px; }
+
+  /* ── Category detail page — desktop two-column layout ── */
+  #categoryView { background: #e8e2d5; }
+
+  .catpage-sheet {
+    max-width: 1180px; width: 100%; margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto 1fr;
+    min-height: 100vh;
+  }
+
+  .cover-top {
+    grid-column: 1 / -1;
+    padding: 20px 48px 0;
+    background: transparent;
+  }
+  .cover-icon { background: rgba(0,0,0,.07); }
+
+  .cover-stack {
+    grid-column: 1; grid-row: 2;
+    margin: 24px 0 0 48px; padding-top: 0;
+    position: sticky; top: 24px; align-self: start;
+  }
+  .stack-card.s2 { width: 80%; }
+  .stack-card.s3 { width: 66%; }
+
+  .cover-title { font-size: 56px; }
+  .cover-hero { aspect-ratio: 4 / 3; border-radius: 22px; }
+
+  .catpage-body {
+    grid-column: 2; grid-row: 2;
+    padding: 24px 48px 48px 36px;
+  }
+  .catpage-heading { font-size: 13px; margin-bottom: 18px; }
+
+  .catpage-list { gap: 14px; }
+  .cp-card {
+    padding: 14px; gap: 18px; border-radius: 20px;
+    box-shadow: 0 8px 24px rgba(55,48,35,.09);
+    transition: transform .15s ease, box-shadow .2s ease;
+  }
+  .cp-card:hover { transform: translateY(-3px); box-shadow: 0 14px 32px rgba(55,48,35,.14); }
+  .cp-thumb { width: 88px; height: 88px; border-radius: 16px; }
+  .cp-info b { font-size: 17px; }
+  .cp-sub { font-size: 14px; }
+  .cp-meta { font-size: 13px; }
+  .cp-price { font-size: 17px; }
 }
 
 /* ===== Static pages (about / contact / privacy) ===== */

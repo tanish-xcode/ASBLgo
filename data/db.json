@@ -86,8 +86,8 @@
   "offer": {
     "id": "o1",
     "title": "Scenes worthy",
-    "headline": "Flat 1,500 off",
-    "sub": "on all events",
+    "headline": "",
+    "sub": "",
     "cta": "BOOK NOW",
     "image": "/assets/offer.png"
   },
